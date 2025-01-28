@@ -299,6 +299,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                           size: AppSizes.iconMedium,
                           color: Colors.purpleAccent,
                         ),
+                        isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                       ),
                     ),
                     const SizedBox(height: 20),

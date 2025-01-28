@@ -139,6 +139,8 @@ void dispose(){
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.phone_android_rounded, size: AppSizes.iconLarge),
+          isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
           filled: true,
           fillColor: Colors.grey[100],
           hintText: "Numéro",
@@ -164,6 +166,8 @@ void dispose(){
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.mail_outline, size: AppSizes.iconLarge),
+          isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
           filled: true,
           fillColor: Colors.grey[100],
           hintText: "Email",

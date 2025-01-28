@@ -183,16 +183,14 @@ class _FournisseurViewState extends State<FournisseurView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                               
-                                child: Text(
-                                  "Erreur de chargement des données. Verifier votre réseau de connexion. Réessayer en tirant l'ecrans vers le bas!!",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium),
-                                ))
-                      ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: Text(
+                                "Erreur de chargement des données. Verifier votre réseau de connexion. Réessayer en tirant l'ecrans vers le bas!!",
+                                style: GoogleFonts.roboto(
+                                    fontSize: AppSizes.fontMedium),
+                              ))),
                       const SizedBox(width: 40),
                       IconButton(
                           onPressed: () {
@@ -325,136 +323,150 @@ class _FournisseurViewState extends State<FournisseurView> {
               ),
             ),
           ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Form(
-                key: _globalKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: _prenom,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Veuillez entrer le prenom du fournisseur';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Prénom du fournisseur",
-                        hintStyle:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          size: AppSizes.iconMedium,
-                          color: Colors.purpleAccent,
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Form(
+                  key: _globalKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _prenom,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Veuillez entrer le prenom du fournisseur';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Prénom du fournisseur",
+                          hintStyle:
+                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                          prefixIcon: const Icon(
+                            Icons.person,
+                            size: AppSizes.iconMedium,
+                            color: Colors.purpleAccent,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      controller: _nom,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Veuillez entrer le nom du fournisseur';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Nom du fournisseur",
-                        hintStyle:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          size: AppSizes.iconMedium,
-                          color: Colors.purpleAccent,
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _nom,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Veuillez entrer le nom du fournisseur';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Nom du fournisseur",
+                          hintStyle:
+                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                          prefixIcon: const Icon(
+                            Icons.person,
+                            size: AppSizes.iconMedium,
+                            color: Colors.purpleAccent,
+                          ),
+                          isDense: true, // Réduit la hauteur
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 8.0),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      controller: _numero,
-                      keyboardType: TextInputType.number,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Veuillez entrer le numero du fournisseur';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Numero du fournisseur",
-                        hintStyle:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                        prefixIcon: const Icon(
-                          Icons.phone,
-                          size: AppSizes.iconMedium,
-                          color: Colors.purpleAccent,
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _numero,
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Veuillez entrer le numero du fournisseur';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Numero du fournisseur",
+                          hintStyle:
+                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                          prefixIcon: const Icon(
+                            Icons.phone,
+                            size: AppSizes.iconMedium,
+                            color: Colors.purpleAccent,
+                          ),
+                          isDense: true, // Réduit la hauteur
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 8.0),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      controller: _produit,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Veuillez entrer le nom du produit';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Nom du produit",
-                        hintStyle:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                        prefixIcon: const Icon(
-                          Icons.article_rounded,
-                          size: AppSizes.iconMedium,
-                          color: Colors.purpleAccent,
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _produit,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Veuillez entrer le nom du produit';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Nom du produit",
+                          hintStyle:
+                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                          prefixIcon: const Icon(
+                            Icons.article_rounded,
+                            size: AppSizes.iconMedium,
+                            color: Colors.purpleAccent,
+                          ),
+                          isDense: true, // Réduit la hauteur
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 8.0),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      controller: _address,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Veuillez entrer address du fournisseur';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Address du fournisseur",
-                        hintStyle:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                        prefixIcon: const Icon(
-                          Icons.location_on,
-                          size: AppSizes.iconMedium,
-                          color: Colors.purpleAccent,
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _address,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Veuillez entrer address du fournisseur';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: "Address du fournisseur",
+                          hintStyle:
+                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                          prefixIcon: const Icon(
+                            Icons.location_on,
+                            size: AppSizes.iconMedium,
+                            color: Colors.purpleAccent,
+                          ),
+                          isDense: true, // Réduit la hauteur
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 8.0),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        _sendToserver(context);
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:const Color.fromARGB(255, 255, 136, 0),
-                        minimumSize: const Size(400, 50),
-                      ),
-                      child: Text(
-                        "Enregistrer",
-                        style: GoogleFonts.roboto(
-                          fontSize: AppSizes.fontSmall,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.white,
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () {
+                          _sendToserver(context);
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 255, 136, 0),
+                          minimumSize: const Size(400, 50),
+                        ),
+                        child: Text(
+                          "Enregistrer",
+                          style: GoogleFonts.roboto(
+                            fontSize: AppSizes.fontSmall,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

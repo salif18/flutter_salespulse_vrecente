@@ -146,6 +146,8 @@ final _newPassword = TextEditingController();
         keyboardType: TextInputType.visiblePassword,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.key_rounded, size: AppSizes.fontLarge),
+          isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
           filled: true,
           fillColor: Colors.grey[100],
           labelText: "Nouveau mot de passe",
@@ -171,6 +173,8 @@ final _newPassword = TextEditingController();
         keyboardType: TextInputType.visiblePassword,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.lock_outline, size: AppSizes.iconLarge),
+          isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
           filled: true,
           fillColor: Colors.grey[100],
           labelText: "Confirmer",

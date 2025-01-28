@@ -382,8 +382,8 @@ class _DepensesViewState extends State<DepensesView> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: const EdgeInsets.all(15),
-          height: MediaQuery.of(context).size.height * 0.5,
+          padding: const EdgeInsets.all(8),
+          height: MediaQuery.of(context).size.height * 0.6,
           child: Form(
             key: _globalKey,
             child: SingleChildScrollView(
@@ -395,32 +395,44 @@ class _DepensesViewState extends State<DepensesView> {
                           fontWeight: FontWeight.w500)),
                   const SizedBox(height: 20),
                   const SizedBox(height: 20),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: _montantController,
-                    decoration: const InputDecoration(
-                        labelText: "Somme depensée",
-                        border: OutlineInputBorder()),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Le nom du produit est requis";
-                      }
-                      return null;
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _montantController,
+                      decoration: const InputDecoration(
+                         hintText: "Somme depensée",
+                          filled: true,
+                          isDense: true, // Réduit la hauteur
+                                contentPadding:EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
+                          border: OutlineInputBorder()),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Le nom du produit est requis";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                   const SizedBox(height: 20),
-                  TextFormField(
-                    controller: _motifController,
-                    keyboardType: TextInputType.name,
-                    decoration: const InputDecoration(
-                        labelText: "Motif du depense",
-                        border: OutlineInputBorder()),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "La description est requise";
-                      }
-                      return null;
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: _motifController,
+                      keyboardType: TextInputType.name,
+                      decoration: const InputDecoration(
+                          hintText: "Motif du depense",
+                          filled: true,
+                          isDense: true, // Réduit la hauteur
+                                contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                          border: OutlineInputBorder()),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "La description est requise";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(

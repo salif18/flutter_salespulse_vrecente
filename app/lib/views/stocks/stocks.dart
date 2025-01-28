@@ -871,6 +871,8 @@ class _StocksViewState extends State<StocksView> {
                     controller: _nameController,
                     decoration: const InputDecoration(
                         labelText: "Nom du produit",
+                         isDense: true, // Réduit la hauteur
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -885,6 +887,8 @@ class _StocksViewState extends State<StocksView> {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         labelText: "Prix d'achat",
+                         isDense: true, // Réduit la hauteur
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -899,6 +903,8 @@ class _StocksViewState extends State<StocksView> {
                     controller: _prixVenteController,
                     decoration: const InputDecoration(
                         labelText: "Prix de vente",
+                         isDense: true, // Réduit la hauteur
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -915,6 +921,8 @@ class _StocksViewState extends State<StocksView> {
                     controller: _stockController,
                     decoration: const InputDecoration(
                         labelText: "Stock du produit",
+                        isDense: true, // Réduit la hauteur
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -935,6 +943,8 @@ class _StocksViewState extends State<StocksView> {
                     decoration: const InputDecoration(
                         labelText: "Catégorie du produit",
                         labelStyle: TextStyle(color: Colors.white),
+                        fillColor:  Color(0xff001c30),
+                        filled: true,
                         border: OutlineInputBorder()),
                     items: _listCategories.map((category) {
                       return DropdownMenuItem<String>(
@@ -1077,6 +1087,8 @@ class _StocksViewState extends State<StocksView> {
                     controller: _stockController,
                     decoration: const InputDecoration(
                         labelText: "Stock du produit",
+                        isDense: true, // Réduit la hauteur
+                              contentPadding:EdgeInsets.symmetric(vertical: 8.0),
                         border: OutlineInputBorder()),
                   ),
                   const SizedBox(height: 20),

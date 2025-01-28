@@ -18,7 +18,7 @@ class UpdatePassword extends StatefulWidget {
 }
 
 class _UpdatePasswordState extends State<UpdatePassword> {
-    ServicesAuth api = ServicesAuth();
+  ServicesAuth api = ServicesAuth();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -52,14 +52,14 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                 child: CircularProgressIndicator(),
               );
             });
-        final res = await api.postUpdatePassword(data,token, userId);
+        final res = await api.postUpdatePassword(data, token, userId);
         final decodedData = json.decode(res.body);
-          Navigator.pop(context); // Fermer le dialog
+        Navigator.pop(context); // Fermer le dialog
 
         if (res.statusCode == 200) {
           api.showSnackBarSuccessPersonalized(
               context, decodedData['message'].toString());
-         Navigator.pop(context);
+          Navigator.pop(context);
         } else {
           api.showSnackBarErrorPersonalized(
               context, decodedData["message"].toString());
@@ -70,6 +70,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +79,11 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         backgroundColor: const Color(0xFF1D1A30),
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_ios_rounded, size: AppSizes.iconMedium, color: Colors.white,)),
+            icon: const Icon(
+              Icons.arrow_back_ios_rounded,
+              size: AppSizes.iconMedium,
+              color: Colors.white,
+            )),
       ),
       body: Container(
         padding: const EdgeInsets.all(20),
@@ -113,7 +118,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                 child: Text(
                   "Changer de mot de passe",
                   style: GoogleFonts.roboto(
-                      fontSize: AppSizes.fontLarge, fontWeight: FontWeight.w600),
+                      fontSize: AppSizes.fontLarge,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
               Padding(
@@ -121,7 +127,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                 child: Text(
                   "Votre mot de passe doit contenir au moins 6 caractères",
                   style: GoogleFonts.roboto(
-                      fontSize: AppSizes.fontSmall, fontWeight: FontWeight.w400),
+                      fontSize: AppSizes.fontSmall,
+                      fontWeight: FontWeight.w400),
                 ),
               )
             ],
@@ -130,7 +137,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         Padding(
           padding: const EdgeInsets.only(top: 10),
           child: TextFormField(
-             controller: _currentPassword,
+            controller: _currentPassword,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Veuillez entrer un mot de passe actuel';
@@ -145,6 +152,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintText: "Mot de passe actuel",
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
+              isDense: true, // Réduit la hauteur
+              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -171,6 +180,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintText: "Nouveau mot de passe",
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
+              isDense: true, // Réduit la hauteur
+              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -182,7 +193,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
         Padding(
           padding: const EdgeInsets.only(top: 10),
           child: TextFormField(
-             controller: _passwordConfirmation,
+            controller: _passwordConfirmation,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Veuillez retaper le meme mot de passe';
@@ -198,6 +209,8 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
+              isDense: true, // Réduit la hauteur
+              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide.none,

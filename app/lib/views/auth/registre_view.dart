@@ -112,7 +112,7 @@ class _RegistreViewState extends State<RegistreView> {
           SliverFillRemaining(
             hasScrollBody: false,
             child: Container(
-              height: 670,
+              height: 600,
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
               decoration: const BoxDecoration(
@@ -164,6 +164,8 @@ class _RegistreViewState extends State<RegistreView> {
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.person_3_outlined,
                                 size: AppSizes.iconLarge),
+                                isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
@@ -188,6 +190,8 @@ class _RegistreViewState extends State<RegistreView> {
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.home_work_outlined,
                                 size: AppSizes.iconLarge),
+                                isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
@@ -212,6 +216,8 @@ class _RegistreViewState extends State<RegistreView> {
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.phone_android_outlined,
                                 size: AppSizes.iconLarge),
+                                isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
@@ -236,6 +242,8 @@ class _RegistreViewState extends State<RegistreView> {
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.mail_outline,
                                 size: AppSizes.iconLarge),
+                                isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
@@ -262,6 +270,8 @@ class _RegistreViewState extends State<RegistreView> {
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.lock_outline,
                                 size: AppSizes.iconLarge),
+                                isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {

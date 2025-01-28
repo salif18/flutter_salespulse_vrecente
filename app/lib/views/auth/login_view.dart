@@ -94,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 Container(
-                  height: 700,
+                  height: 400,
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
                   decoration: const BoxDecoration(
@@ -125,6 +125,8 @@ class _LoginViewState extends State<LoginView> {
                               filled: true,
                               fillColor: const Color(0xfff0fcf3),
                               prefixIcon: const Icon(Icons.person_2_outlined, size: AppSizes.iconLarge),
+                              isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none,
@@ -150,6 +152,8 @@ class _LoginViewState extends State<LoginView> {
                               filled: true,
                               fillColor: const Color(0xfff0fcf3),
                               prefixIcon: const Icon(Icons.lock_outline, size: AppSizes.iconLarge),
+                              isDense: true, // Réduit la hauteur
+                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -165,9 +169,9 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 25),
+                        // const SizedBox(height: 5),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -206,7 +210,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: const EdgeInsets.symmetric(horizontal:  5.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

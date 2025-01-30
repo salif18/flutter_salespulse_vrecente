@@ -82,6 +82,7 @@ class _PanierViewState extends State<PanierView> {
  
     
     return Scaffold(
+      backgroundColor: Colors.grey[100],
      body: CustomScrollView(
   slivers: [
     SliverAppBar(
@@ -206,13 +207,6 @@ class _PanierViewState extends State<PanierView> {
                   padding: const EdgeInsets.all(15),
                   decoration: const BoxDecoration(
                     color: Colors.white,
-                    border: Border(
-                      top: BorderSide(
-                        color: Color.fromARGB(255, 200, 255, 198),
-                        width: 1,
-                        style: BorderStyle.solid,
-                      ),
-                    ),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20),

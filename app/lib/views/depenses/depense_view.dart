@@ -400,12 +400,13 @@ class _DepensesViewState extends State<DepensesView> {
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _montantController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                          hintText: "Somme depensée",
+                         fillColor: Colors.grey[100],
                           filled: true,
                           isDense: true, // Réduit la hauteur
-                                contentPadding:EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
-                          border: OutlineInputBorder()),
+                                contentPadding:const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
+                          border: const OutlineInputBorder()),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Le nom du produit est requis";
@@ -420,12 +421,13 @@ class _DepensesViewState extends State<DepensesView> {
                     child: TextFormField(
                       controller: _motifController,
                       keyboardType: TextInputType.name,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           hintText: "Motif du depense",
                           filled: true,
+                          fillColor: Colors.grey[100],
                           isDense: true, // Réduit la hauteur
-                                contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                          border: OutlineInputBorder()),
+                                contentPadding:const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                          border: const OutlineInputBorder()),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "La description est requise";

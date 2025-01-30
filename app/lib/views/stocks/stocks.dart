@@ -349,7 +349,7 @@ class _StocksViewState extends State<StocksView> {
                                   left: 25,
                                   bottom: 25,
                                   child: Badge.count(
-                                    count: provider.myCart.length,
+                                    count: provider.totalArticle,
                                     backgroundColor: Colors.amber,
                                     largeSize: 40 / 2,
                                     textStyle: GoogleFonts.roboto(

@@ -209,36 +209,33 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal:  5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Vous n'avez pas de compte ?",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Vous n'avez pas de compte ?",
+                              style: GoogleFonts.roboto(
+                                fontSize: AppSizes.fontMedium,
+                                color: Colors.white,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const RegistreView()),
+                                );
+                              },
+                              child: Text(
+                                "Créer",
                                 style: GoogleFonts.roboto(
                                   fontSize: AppSizes.fontMedium,
-                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  color: const Color.fromARGB(255, 255, 123, 0),
                                 ),
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => const RegistreView()),
-                                  );
-                                },
-                                child: Text(
-                                  "Créer",
-                                  style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
-                                    fontWeight: FontWeight.bold,
-                                    color: const Color.fromARGB(255, 255, 123, 0),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

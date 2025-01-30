@@ -153,7 +153,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               isDense: true, // Réduit la hauteur
-              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10.0 ,horizontal: 10.0),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -181,7 +181,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               isDense: true, // Réduit la hauteur
-              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10.0 ,horizontal: 10.0),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -210,7 +210,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               isDense: true, // Réduit la hauteur
-              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10.0 ,horizontal: 10.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide.none,

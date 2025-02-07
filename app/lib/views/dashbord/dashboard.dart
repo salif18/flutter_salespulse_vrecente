@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -72,6 +74,16 @@ class _DashboardViewState extends State<DashboardView> {
       } else {
         Exception("Failed to load products");
       }
+    }on DioException {
+      statsApi.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context,
+          "Problème de connexion : Vérifiez votre Internet.");
+    } on TimeoutException {
+      statsApi.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context,
+          "Le serveur ne répond pas. Veuillez réessayer plus tard.");
     } catch (e) {
       Exception("Error loading products");
     }

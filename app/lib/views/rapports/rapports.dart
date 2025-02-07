@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:date_field/date_field.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -68,7 +70,17 @@ class _RapportViewState extends State<RapportView> {
           _streamController.addError("Failed to load products");
         }
       }
-    } catch (e) {
+    } on DioException {
+      api.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context,
+          "Problème de connexion : Vérifiez votre Internet.");
+    } on TimeoutException {
+      api.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context,
+          "Le serveur ne répond pas. Veuillez réessayer plus tard.");
+    }  catch (e) {
       if (!_streamController.isClosed) {
         _streamController.addError("Error loading products");
       }
@@ -227,11 +239,11 @@ class _RapportViewState extends State<RapportView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(0.0),
                             child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
+                                width: MediaQuery.of(context).size.width * 0.7,
                                 child: Text(
-                                  "Erreur de chargement des données. Verifier votre réseau de connexion. Réessayer en tirant l'ecrans vers le bas !!",
+                                  "Erreur de chargement des données. Réessayer en tirant l'ecrans vers le bas !!",
                                   style: GoogleFonts.roboto(
                                       fontSize: AppSizes.fontMedium),
                                 )),

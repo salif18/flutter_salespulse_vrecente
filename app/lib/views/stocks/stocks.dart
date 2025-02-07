@@ -98,14 +98,22 @@ class _StocksViewState extends State<StocksView> {
 
         if (!_streamController.isClosed) {
           _streamController.add(products); // Ajouter les produits au stream
-        } else {
-          print("StreamController is closed, cannot add products.");
-        }
+        } 
       } else {
         if (!_streamController.isClosed) {
           _streamController.addError("Failed to load products");
         }
       }
+    } on DioException {
+      api.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context,
+          "Problème de connexion : Vérifiez votre Internet.");
+    } on TimeoutException {
+      api.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context,
+          "Le serveur ne répond pas. Veuillez réessayer plus tard.");
     } catch (e) {
       if (!_streamController.isClosed) {
         _streamController.addError("Error loading products");
@@ -173,16 +181,13 @@ class _StocksViewState extends State<StocksView> {
         if (res.statusCode == 201) {
           // ignore: use_build_context_synchronously
           api.showSnackBarSuccessPersonalized(context, res.data["message"]);
-         
         } else {
           // ignore: use_build_context_synchronously
           api.showSnackBarErrorPersonalized(context, res.data["message"]);
-           
         }
       } catch (e) {
         // ignore: use_build_context_synchronously
         api.showSnackBarErrorPersonalized(context, e.toString());
-         
       }
     }
   }
@@ -256,7 +261,7 @@ class _StocksViewState extends State<StocksView> {
 
     return Scaffold(
       key: drawerKey,
-       drawer: const DrawerWidget(),
+      drawer: const DrawerWidget(),
       backgroundColor: const Color(0xfff0f1f5),
       body: RefreshIndicator(
         backgroundColor: Colors.transparent,
@@ -275,7 +280,8 @@ class _StocksViewState extends State<StocksView> {
                     drawerKey.currentState!.openDrawer();
                   },
                   icon: const Icon(Icons.sort,
-                      size: AppSizes.iconHyperLarge, color: Color.fromARGB(255, 255, 115, 1))),
+                      size: AppSizes.iconHyperLarge,
+                      color: Color.fromARGB(255, 255, 115, 1))),
               actions: [
                 IconButton(
                     tooltip: "Ajouter de stocks",
@@ -314,10 +320,10 @@ class _StocksViewState extends State<StocksView> {
                 IconButton(
                     tooltip: "Scanner",
                     onPressed: () {
-                       Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MobileScannerView()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MobileScannerView()));
                     },
                     icon: const Icon(Icons.qr_code_scanner_sharp,
                         color: Color.fromARGB(255, 255, 136, 0),
@@ -416,7 +422,8 @@ class _StocksViewState extends State<StocksView> {
                               value: categorie.name,
                               child: Text(
                                 categorie.name,
-                                style: GoogleFonts.roboto(fontSize: 12,color: Colors.white),
+                                style: GoogleFonts.roboto(
+                                    fontSize: 12, color: Colors.white),
                               ),
                             );
                           }).toList(),
@@ -477,22 +484,20 @@ class _StocksViewState extends State<StocksView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                               
+                            padding: const EdgeInsets.all(0.0),
+                            child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
                                 child: Text(
-                                  "Erreur de chargement des données. Verifier votre réseau de connexion. Réessayer en tirant l'ecrans vers le bas !!",
+                                  "Erreur de chargement des données. Réessayer en tirant l'ecrans vers le bas !!",
                                   style: GoogleFonts.roboto(
                                       fontSize: AppSizes.fontMedium),
-                                ))
-                        ),
+                                ))),
                         const SizedBox(width: 40),
                         IconButton(
                             onPressed: () {
                               _refresh();
                             },
-                            icon:const Icon(Icons.refresh_outlined,
+                            icon: const Icon(Icons.refresh_outlined,
                                 size: AppSizes.iconLarge))
                       ],
                     ),
@@ -516,7 +521,7 @@ class _StocksViewState extends State<StocksView> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color:const Color.fromARGB(255, 235, 235, 235),
+                          color: const Color.fromARGB(255, 235, 235, 235),
                         ),
                         child: DataTable(
                           columnSpacing: 1,
@@ -871,8 +876,9 @@ class _StocksViewState extends State<StocksView> {
                     controller: _nameController,
                     decoration: const InputDecoration(
                         labelText: "Nom du produit",
-                         isDense: true, // Réduit la hauteur
-                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        isDense: true, // Réduit la hauteur
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -887,8 +893,9 @@ class _StocksViewState extends State<StocksView> {
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                         labelText: "Prix d'achat",
-                         isDense: true, // Réduit la hauteur
-                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        isDense: true, // Réduit la hauteur
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -903,8 +910,9 @@ class _StocksViewState extends State<StocksView> {
                     controller: _prixVenteController,
                     decoration: const InputDecoration(
                         labelText: "Prix de vente",
-                         isDense: true, // Réduit la hauteur
-                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        isDense: true, // Réduit la hauteur
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -922,7 +930,8 @@ class _StocksViewState extends State<StocksView> {
                     decoration: const InputDecoration(
                         labelText: "Stock du produit",
                         isDense: true, // Réduit la hauteur
-                              contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10.0),
                         border: OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -935,21 +944,23 @@ class _StocksViewState extends State<StocksView> {
                   ),
                   const SizedBox(height: 20),
                   DropdownButtonFormField<String>(
-                     dropdownColor: const Color(0xff001c30),
-                     isDense: false,
-                        menuMaxHeight: 200,
-                        borderRadius: BorderRadius.circular(10),
+                    dropdownColor: const Color(0xff001c30),
+                    isDense: false,
+                    menuMaxHeight: 200,
+                    borderRadius: BorderRadius.circular(10),
                     value: _categoryController,
                     decoration: const InputDecoration(
                         labelText: "Catégorie du produit",
                         labelStyle: TextStyle(color: Colors.white),
-                        fillColor:  Color(0xff001c30),
+                        fillColor: Color(0xff001c30),
                         filled: true,
                         border: OutlineInputBorder()),
                     items: _listCategories.map((category) {
                       return DropdownMenuItem<String>(
                         value: category.name,
-                        child: Text(category.name , style: GoogleFonts.roboto(fontSize: 12,color: Colors.white)),
+                        child: Text(category.name,
+                            style: GoogleFonts.roboto(
+                                fontSize: 12, color: Colors.white)),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -1088,7 +1099,7 @@ class _StocksViewState extends State<StocksView> {
                     decoration: const InputDecoration(
                         labelText: "Stock du produit",
                         isDense: true, // Réduit la hauteur
-                              contentPadding:EdgeInsets.symmetric(vertical: 8.0),
+                        contentPadding: EdgeInsets.symmetric(vertical: 8.0),
                         border: OutlineInputBorder()),
                   ),
                   const SizedBox(height: 20),

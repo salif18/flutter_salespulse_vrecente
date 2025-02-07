@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class _DepensesViewState extends State<DepensesView> {
   List<DepensesModel> filteredDepenses = [];
   final _montantController = TextEditingController();
   final _motifController = TextEditingController();
+  
 
   @override
   void initState() {
@@ -77,7 +79,18 @@ class _DepensesViewState extends State<DepensesView> {
           _streamController.addError("Failed to load depenses");
         }
       }
-    } catch (e) {
+    } on SocketException {
+      api.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context, "Problème de connexion : Vérifiez votre Internet.");
+     
+    } on TimeoutException {
+      api.showSnackBarErrorPersonalized(
+          // ignore: use_build_context_synchronously
+          context, "Le serveur ne répond pas. Veuillez réessayer plus tard.");
+      
+    }
+    catch (e) {
       if (!_streamController.isClosed) {
         _streamController.addError("Error loading depenses");
       }

@@ -392,8 +392,8 @@ class _StocksViewState extends State<StocksView> {
                     Container(
                       padding:  EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16.0),),
                       constraints:  BoxConstraints(
-                        maxWidth: AppSizes.responsiveValue(context, 260.0),
-                        minHeight: AppSizes.responsiveValue(context, 20.0),
+                        maxWidth: AppSizes.responsiveValue(context, 290.0),
+                        minHeight: AppSizes.responsiveValue(context, 15.0),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),

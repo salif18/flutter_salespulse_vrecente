@@ -254,7 +254,7 @@ class _DashboardViewState extends State<DashboardView> {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         width: constraints.maxWidth,
-        height: AppSizes.responsiveValue(context, 275.0),
+        height: AppSizes.responsiveValue(context, 300.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           // color: const Color(0xff001c30),
@@ -438,7 +438,7 @@ class _DashboardViewState extends State<DashboardView> {
         // width: 180,
         height: AppSizes.responsiveValue(context, 200.0),
         margin:  EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
-        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
+        padding: EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 5.0),vertical: AppSizes.responsiveValue(context, 10.0)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: backgroundColor,

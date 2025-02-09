@@ -84,9 +84,9 @@ class _MobileScannerViewState extends State<MobileScannerView> {
                     scannedData != null
                         ? 'Résultat : $scannedData'
                         : 'Scanne un code QR',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.orange, // Style du texte en orange
-                      fontSize: 18,
+                      fontSize: MediaQuery.of(context).size.width*0.038,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -108,7 +108,7 @@ class _MobileScannerViewState extends State<MobileScannerView> {
                       'Créer un code QR',
                       style: GoogleFonts.roboto(
                         color: Colors.orange,
-                        fontSize: 17,
+                        fontSize: MediaQuery.of(context).size.width*0.03,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

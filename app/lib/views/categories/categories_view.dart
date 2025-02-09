@@ -176,11 +176,11 @@ class _CategoriesViewState extends State<CategoriesView> {
           stream: _listCategories.stream,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SliverToBoxAdapter(
+              return const SliverFillRemaining(
                 child: Center(child: CircularProgressIndicator()),
               );
             } else if (snapshot.hasError) {
-              return SliverToBoxAdapter(
+              return SliverFillRemaining(
                 child: Center(
                     child: Container(
                   padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),

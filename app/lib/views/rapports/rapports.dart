@@ -184,7 +184,7 @@ class _RapportViewState extends State<RapportView> {
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16),),
                         constraints:
-                            BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 250), minHeight: AppSizes.responsiveValue(context, 20),),
+                            BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 280), minHeight: AppSizes.responsiveValue(context, 20),),
                         child: DateTimeFormField(
                           decoration: InputDecoration(
                             hintText: 'Choisir pour une date',
@@ -219,14 +219,14 @@ class _RapportViewState extends State<RapportView> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: StreamBuilder<List<VentesModel>>(
-                stream: _streamController.stream,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(
+            StreamBuilder<List<VentesModel>>(
+              stream: _streamController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SliverFillRemaining(child: const Center(child: CircularProgressIndicator()));
+                } else if (snapshot.hasError) {
+                  return SliverFillRemaining(
+                    child: Center(
                         child: Container(
                       padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                       // height: 120,
@@ -257,34 +257,36 @@ class _RapportViewState extends State<RapportView> {
                                   size: AppSizes.iconLarge))
                         ],
                       ),
-                    ));
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Text("Aucun produit disponible.");
-                  } else {
-                    final List<VentesModel> articles = snapshot.data!;
-
-                    // Filtrer les articles par la date sélectionnée
-                    // Filtrer les articles par la date sélectionnée, sinon afficher tous les articles
-                    filteredArticles = selectedDate == null
-                        ? articles
-                        : articles.where((article) {
-                            // Vérifier si `article.dateVente` n'est pas null également
-                            if (selectedDate != null) {
-                              return article.dateVente.year ==
-                                      selectedDate!.year &&
-                                  article.dateVente.month ==
-                                      selectedDate!.month &&
-                                  article.dateVente.day == selectedDate!.day;
-                            }
-                            return false;
-                          }).toList();
-
-                    if (filteredArticles.isEmpty) {
-                      return const Text(
-                          "Aucun article trouvé pour la date sélectionnée.");
-                    }
-
-                    return SingleChildScrollView(
+                    )),
+                  );
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Text("Aucun produit disponible.");
+                } else {
+                  final List<VentesModel> articles = snapshot.data!;
+            
+                  // Filtrer les articles par la date sélectionnée
+                  // Filtrer les articles par la date sélectionnée, sinon afficher tous les articles
+                  filteredArticles = selectedDate == null
+                      ? articles
+                      : articles.where((article) {
+                          // Vérifier si `article.dateVente` n'est pas null également
+                          if (selectedDate != null) {
+                            return article.dateVente.year ==
+                                    selectedDate!.year &&
+                                article.dateVente.month ==
+                                    selectedDate!.month &&
+                                article.dateVente.day == selectedDate!.day;
+                          }
+                          return false;
+                        }).toList();
+            
+                  if (filteredArticles.isEmpty) {
+                    return const Text(
+                        "Aucun article trouvé pour la date sélectionnée.");
+                  }
+            
+                  return SliverToBoxAdapter(
+                    child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Container(
                         decoration: BoxDecoration(
@@ -414,7 +416,7 @@ class _RapportViewState extends State<RapportView> {
                             final somme = article.prixVente * article.qty;
                             final benefices =
                                 somme - (article.prixAchat * article.qty);
-
+                                
                             return DataRow(
                               cells: [
                                 DataCell(
@@ -499,10 +501,10 @@ class _RapportViewState extends State<RapportView> {
                           }).toList(),
                         ),
                       ),
-                    );
-                  }
-                },
-              ),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),
@@ -510,7 +512,7 @@ class _RapportViewState extends State<RapportView> {
       bottomNavigationBar: LayoutBuilder(builder: (context, constraints) {
         return Container(
           width: constraints.maxWidth,
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 15), vertical: AppSizes.responsiveValue(context, 20)),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 10), vertical: AppSizes.responsiveValue(context, 20)),
           height: AppSizes.responsiveValue(context, 150),
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 248, 248, 248),
@@ -563,7 +565,7 @@ class _RapportViewState extends State<RapportView> {
                           child: Text(
                             "Produit ",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize: AppSizes.fontSmall),
                           ),
                         ),
                       ),
@@ -571,7 +573,7 @@ class _RapportViewState extends State<RapportView> {
                         fit: BoxFit.scaleDown,
                         child: Text(nombreTotalDeProduit().toString(),
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium)),
+                                fontSize: AppSizes.fontSmall)),
                       ),
                     ],
                   ),
@@ -584,7 +586,7 @@ class _RapportViewState extends State<RapportView> {
                           child: Text(
                             "Total",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize: AppSizes.fontSmall),
                           ),
                         ),
                       ),
@@ -592,7 +594,7 @@ class _RapportViewState extends State<RapportView> {
                         fit: BoxFit.scaleDown,
                         child: Text("${sommeTotal().toString()} XOF",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium)),
+                                fontSize: AppSizes.fontSmall)),
                       ),
                     ],
                   ),
@@ -605,7 +607,7 @@ class _RapportViewState extends State<RapportView> {
                           child: Text(
                             "Benefices",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize: AppSizes.fontSmall),
                           ),
                         ),
                       ),
@@ -613,7 +615,7 @@ class _RapportViewState extends State<RapportView> {
                         fit: BoxFit.scaleDown,
                         child: Text("${beneficeTotal().toString()} XOF",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium)),
+                                fontSize: AppSizes.fontSmall)),
                       ),
                     ],
                   ),

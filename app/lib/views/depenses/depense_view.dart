@@ -191,7 +191,7 @@ class _DepensesViewState extends State<DepensesView> {
                             child: Text(
                               "${_totalFilter()} XOF",
                               style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium,
+                                  fontSize: AppSizes.fontSmall,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             )),
@@ -200,7 +200,7 @@ class _DepensesViewState extends State<DepensesView> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16),),
                       constraints:
-                          BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 250), minHeight: AppSizes.responsiveValue(context, 20)),
+                          BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 260), minHeight: AppSizes.responsiveValue(context, 20)),
                       child: DateTimeFormField(
                         decoration: InputDecoration(
                           hintText: 'Choisir pour une date',
@@ -235,143 +235,140 @@ class _DepensesViewState extends State<DepensesView> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: Container(
-                padding: const EdgeInsets.all(8),
-                child: StreamBuilder<List<DepensesModel>>(
-                  stream: _streamController.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(
-                          child: Container(
-                        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
-                        height: MediaQuery.of(context).size.width * 0.4,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                               
-                                child: Text(
-                                  "Erreur de chargement des données. Verifier votre réseau de connexion. Réessayer en tirant l'ecrans vers le bas !!",
-                                  style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium),
-                                ))
-                            ),
-                            SizedBox(width: AppSizes.responsiveValue(context, 40),),
-                            IconButton(
-                                onPressed: () {
-                                  _refresh();
-                                },
-                                icon:const Icon(Icons.refresh_outlined,
-                                    size: AppSizes.iconLarge))
-                          ],
+            StreamBuilder<List<DepensesModel>>(
+              stream: _streamController.stream,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SliverFillRemaining(child: const Center(child: CircularProgressIndicator()));
+                } else if (snapshot.hasError) {
+                  return Center(
+                      child: Container(
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                    height: MediaQuery.of(context).size.width * 0.4,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                           
+                            child: Text(
+                              "Erreur de chargement des données. Verifier votre réseau de connexion. Réessayer en tirant l'ecrans vers le bas !!",
+                              style: GoogleFonts.roboto(
+                                  fontSize: AppSizes.fontMedium),
+                            ))
                         ),
-                      ));
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const Text("Aucun produit disponible.");
-                    } else {
-                      final List<DepensesModel> depenses = snapshot.data!;
-                      // Filtrer les articles par la date sélectionnée
-                      filteredDepenses = selectedDate == null
-                          ? depenses
-                          : depenses.where((article) {
-                              if (selectedDate != null) {
-                                return article.date.year ==
-                                        selectedDate!.year &&
-                                    article.date.month == selectedDate!.month &&
-                                    article.date.day == selectedDate!.day;
-                              }
-                              return false;
-                            }).toList();
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: filteredDepenses.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          DepensesModel depense = filteredDepenses[index];
-                          return Container(
-                            height: AppSizes.responsiveValue(context, 100),
-                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15),),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color:const Color.fromARGB(255, 250, 250, 250),
-                              border: const Border(
-                                bottom: BorderSide(
-                                    color: Color.fromARGB(255, 230, 230, 230)),
-                              ),
+                        SizedBox(width: AppSizes.responsiveValue(context, 40),),
+                        IconButton(
+                            onPressed: () {
+                              _refresh();
+                            },
+                            icon:const Icon(Icons.refresh_outlined,
+                                size: AppSizes.iconLarge))
+                      ],
+                    ),
+                  ));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return SliverFillRemaining(child: const Text("Aucun produit disponible."));
+                } else {
+                  final List<DepensesModel> depenses = snapshot.data!;
+                  // Filtrer les articles par la date sélectionnée
+                  filteredDepenses = selectedDate == null
+                      ? depenses
+                      : depenses.where((article) {
+                          if (selectedDate != null) {
+                            return article.date.year ==
+                                    selectedDate!.year &&
+                                article.date.month == selectedDate!.month &&
+                                article.date.day == selectedDate!.day;
+                          }
+                          return false;
+                        }).toList();
+                  return SliverToBoxAdapter(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: filteredDepenses.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        DepensesModel depense = filteredDepenses[index];
+                        return Container(
+                          height: AppSizes.responsiveValue(context, 100),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15),),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color:const Color.fromARGB(255, 250, 250, 250),
+                            border: const Border(
+                              bottom: BorderSide(
+                                  color: Color.fromARGB(255, 230, 230, 230)),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: AppSizes.responsiveValue(context, 15),),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              depense.motifs,
-                                              style: GoogleFonts.roboto(
-                                                fontSize: AppSizes.fontMedium,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                                child: Row(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: AppSizes.responsiveValue(context, 15),),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            depense.motifs,
+                                            style: GoogleFonts.roboto(
+                                              fontSize: AppSizes.fontMedium,
+                                              fontWeight: FontWeight.w600,
                                             ),
-                                            Text(
-                                              "${depense.montants.toString()} XOF",
-                                              style: GoogleFonts.roboto(
-                                                fontSize: AppSizes.fontMedium,
-                                                color: Colors.grey[500],
-                                              ),
+                                          ),
+                                          Text(
+                                            "${depense.montants.toString()} XOF",
+                                            style: GoogleFonts.roboto(
+                                              fontSize: AppSizes.fontMedium,
+                                              color: Colors.grey[500],
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Date",
-                                        style: GoogleFonts.montserrat(
-                                            fontSize: AppSizes.fontMedium,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Text(DateFormat("dd MMM yyyy")
-                                          .format(depense.date)),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    }
-                  },
-                ),
-              ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Date",
+                                      style: GoogleFonts.montserrat(
+                                          fontSize: AppSizes.fontMedium,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    Text(DateFormat("dd MMM yyyy")
+                                        .format(depense.date)),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),

@@ -151,7 +151,7 @@ class _DepensesViewState extends State<DepensesView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: 100,
+              expandedHeight: AppSizes.responsiveValue(context, 100),
               pinned: true,
               floating: true,
               leading: IconButton(
@@ -169,7 +169,7 @@ class _DepensesViewState extends State<DepensesView> {
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: 150,
+                height: AppSizes.responsiveValue(context, 150),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -178,7 +178,7 @@ class _DepensesViewState extends State<DepensesView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                            padding: const EdgeInsets.all(10),
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10),),
                             child: Text(
                               "Total",
                               style: GoogleFonts.roboto(
@@ -187,7 +187,7 @@ class _DepensesViewState extends State<DepensesView> {
                                   color: Colors.white),
                             )),
                         Container(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: EdgeInsets.only(left: AppSizes.responsiveValue(context, 10),),
                             child: Text(
                               "${_totalFilter()} XOF",
                               style: GoogleFonts.roboto(
@@ -198,9 +198,9 @@ class _DepensesViewState extends State<DepensesView> {
                       ],
                     ),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16),),
                       constraints:
-                          const BoxConstraints(maxWidth: 250, minHeight: 20),
+                          BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 250), minHeight: AppSizes.responsiveValue(context, 20)),
                       child: DateTimeFormField(
                         decoration: InputDecoration(
                           hintText: 'Choisir pour une date',
@@ -246,7 +246,7 @@ class _DepensesViewState extends State<DepensesView> {
                     } else if (snapshot.hasError) {
                       return Center(
                           child: Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                         height: MediaQuery.of(context).size.width * 0.4,
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
@@ -256,7 +256,7 @@ class _DepensesViewState extends State<DepensesView> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                               child: SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.6,
                                
@@ -266,7 +266,7 @@ class _DepensesViewState extends State<DepensesView> {
                                       fontSize: AppSizes.fontMedium),
                                 ))
                             ),
-                            const SizedBox(width: 40),
+                            SizedBox(width: AppSizes.responsiveValue(context, 40),),
                             IconButton(
                                 onPressed: () {
                                   _refresh();
@@ -299,8 +299,8 @@ class _DepensesViewState extends State<DepensesView> {
                         itemBuilder: (BuildContext context, int index) {
                           DepensesModel depense = filteredDepenses[index];
                           return Container(
-                            height: 100,
-                            padding: const EdgeInsets.all(15),
+                            height: AppSizes.responsiveValue(context, 100),
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15),),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color:const Color.fromARGB(255, 250, 250, 250),
@@ -313,7 +313,7 @@ class _DepensesViewState extends State<DepensesView> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -321,7 +321,7 @@ class _DepensesViewState extends State<DepensesView> {
                                     children: [
                                       Padding(
                                         padding:
-                                            const EdgeInsets.only(left: 15),
+                                            EdgeInsets.only(left: AppSizes.responsiveValue(context, 15),),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -347,7 +347,7 @@ class _DepensesViewState extends State<DepensesView> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -395,7 +395,7 @@ class _DepensesViewState extends State<DepensesView> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
           height: MediaQuery.of(context).size.height * 0.6,
           child: Form(
             key: _globalKey,
@@ -406,10 +406,10 @@ class _DepensesViewState extends State<DepensesView> {
                       style: GoogleFonts.roboto(
                           fontSize: AppSizes.fontMedium,
                           fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20),),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20),),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _montantController,
@@ -418,7 +418,7 @@ class _DepensesViewState extends State<DepensesView> {
                          fillColor: Colors.grey[100],
                           filled: true,
                           isDense: true, // Réduit la hauteur
-                                contentPadding:const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
+                                contentPadding:EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8),horizontal: AppSizes.responsiveValue(context, 16),),
                           border: const OutlineInputBorder()),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -428,9 +428,9 @@ class _DepensesViewState extends State<DepensesView> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20),),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                     child: TextFormField(
                       controller: _motifController,
                       keyboardType: TextInputType.name,
@@ -439,7 +439,7 @@ class _DepensesViewState extends State<DepensesView> {
                           filled: true,
                           fillColor: Colors.grey[100],
                           isDense: true, // Réduit la hauteur
-                                contentPadding:const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+                                contentPadding:EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8), horizontal: AppSizes.responsiveValue(context, 16),),
                           border: const OutlineInputBorder()),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -449,7 +449,7 @@ class _DepensesViewState extends State<DepensesView> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20),),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 255, 115, 0),

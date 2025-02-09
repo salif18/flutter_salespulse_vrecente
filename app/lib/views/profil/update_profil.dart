@@ -75,7 +75,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor:const Color(0xFF1D1A30),
-        toolbarHeight: 80,
+        toolbarHeight:  AppSizes.responsiveValue(context, 80),
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon:const Icon(Icons.arrow_back_ios_new_rounded, size: AppSizes.iconLarge, color:Colors.white)),
@@ -89,10 +89,10 @@ class _UpdateProfilState extends State<UpdateProfil> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.all(20),
+        padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 20),),
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 20),),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Form(
@@ -106,7 +106,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
                   _textFieldEntreprise(context),
                   _textFieldNumber(context),
                   _textFieldMail(context),
-                  const SizedBox(height: 100),
+                   SizedBox(height:  AppSizes.responsiveValue(context, 100),),
                   _buttonSend(context),
                 ],
               ),
@@ -119,12 +119,12 @@ class _UpdateProfilState extends State<UpdateProfil> {
 
   Widget _text(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 10),),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
             child: Text(
               "Changer le profil ",
               style:
@@ -132,7 +132,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
             child: Text(
               "Vous pouvez apporter des modifications à votre profil",
               style:
@@ -146,7 +146,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
 
   Widget _textFieldName(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
       child: TextFormField(
          controller: _name,
         keyboardType: TextInputType.name,
@@ -167,7 +167,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
 
   Widget _textFieldEntreprise(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
       child: TextFormField(
          controller: _entreprise,
         keyboardType: TextInputType.name,
@@ -188,7 +188,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
 
   Widget _textFieldNumber(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
       child: TextFormField(
          controller: _numero,
         keyboardType: TextInputType.phone,
@@ -209,7 +209,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
 
   Widget _textFieldMail(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
       child: TextFormField(
          controller: _email,
         keyboardType: TextInputType.emailAddress,
@@ -230,7 +230,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
 
   Widget _buttonSend(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20),),
       child: ElevatedButton.icon(
           onPressed: () {
             _sendUpdate();
@@ -238,7 +238,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
           style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 255, 115, 0),
               elevation: 5,
-              fixedSize: const Size(320, 50)),
+              fixedSize: Size(AppSizes.responsiveValue(context, 320), AppSizes.responsiveValue(context, 40),)),
           icon: Icon(Icons.edit, size: AppSizes.iconLarge, color: Colors.grey[100]),
           label: Text("Modifier le profil",
               style: GoogleFonts.roboto(

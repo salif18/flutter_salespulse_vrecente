@@ -36,8 +36,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                     )
                     ),
                   child: SizedBox(
-                      width: 80,
-                      height: 80,
+                      width: AppSizes.responsiveValue(context, 80.0),
+                      height: AppSizes.responsiveValue(context, 80.0),
                       child: Center(
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,9 +63,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   color: const Color.fromARGB(255, 238, 238, 238),
                   child: Column(children: [
                     Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0),),
                       child: Container(
-                         margin: const EdgeInsets.only(top: 25),
+                         margin: EdgeInsets.only(top: AppSizes.responsiveValue(context, 25.0),),
                         width: constraints.maxWidth,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -83,8 +83,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               title: Row(
                                 children: [
                                   Container(
-                                   height: 27,   
-                                   width: 27,
+                                   height: AppSizes.responsiveValue(context, 27.0),   
+                                   width: AppSizes.responsiveValue(context, 27.0),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                       color: const Color.fromARGB(255, 10, 165, 226),

@@ -79,7 +79,7 @@ final _newPassword = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: AppSizes.responsiveValue(context, 80.0),
         elevation: 0,
         backgroundColor: Colors.grey[200],
         leading: IconButton(
@@ -87,7 +87,7 @@ final _newPassword = TextEditingController();
             icon: const Icon(Icons.arrow_back_ios_new_rounded, size: AppSizes.iconLarge)),
       ),
       body: Container(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
         child: SingleChildScrollView(
           child: Form(
             key: _globalKey,
@@ -98,7 +98,7 @@ final _newPassword = TextEditingController();
                 _formConfirmPassword(context),
                 _secondText(context),
                 _codes4Champs(context),
-                const SizedBox(height: 100),
+                SizedBox(height: AppSizes.responsiveValue(context, 100)),
                 _sendButton(context)
               ],
             ),
@@ -110,18 +110,18 @@ final _newPassword = TextEditingController();
 
   Widget _text(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
             child: Text("Validation le mot de passe",
                 style: GoogleFonts.roboto(
                     fontSize: AppSizes.fontLarge, fontWeight: FontWeight.w600)),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
             child: Text(
                 "Veuillez entrer les bonnes informations pour pouvoir valider le nouveau mot de passe",
                 style: GoogleFonts.roboto(
@@ -134,7 +134,7 @@ final _newPassword = TextEditingController();
 
   Widget _formNewPassword(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
       child: TextFormField(
          controller: _newPassword,
         validator: (value) {
@@ -147,7 +147,7 @@ final _newPassword = TextEditingController();
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.key_rounded, size: AppSizes.fontLarge),
           isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
           filled: true,
           fillColor: Colors.grey[100],
           labelText: "Nouveau mot de passe",
@@ -161,7 +161,7 @@ final _newPassword = TextEditingController();
 
   Widget _formConfirmPassword(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
       child: TextFormField(
          controller: _confirmPassword,
         validator: (value) {
@@ -174,7 +174,7 @@ final _newPassword = TextEditingController();
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.lock_outline, size: AppSizes.iconLarge),
           isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
           filled: true,
           fillColor: Colors.grey[100],
           labelText: "Confirmer",
@@ -188,9 +188,9 @@ final _newPassword = TextEditingController();
 
   Widget _secondText(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
         child: Container(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
             child: Text("Entrez les 4 chiffres envoyés sur votre e-mail",
                 style: GoogleFonts.roboto(
                     fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400))));
@@ -198,17 +198,17 @@ final _newPassword = TextEditingController();
 
   Widget _codes4Champs(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
       child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
           child: PinCodeTextField(
             appContext: context,
             length: 4,
             pinTheme: PinTheme(
                 shape: PinCodeFieldShape.box,
                 borderRadius: BorderRadius.circular(10),
-                fieldHeight: 80,
-                fieldWidth: 75,
+                fieldHeight: AppSizes.responsiveValue(context, 80.0),
+                fieldWidth: AppSizes.responsiveValue(context, 75.0),
                 activeColor: Colors.blue,
                 inactiveColor: Colors.grey),
             onCompleted: (value) {
@@ -230,7 +230,7 @@ final _newPassword = TextEditingController();
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 255, 115, 0),
-            minimumSize: const Size(350, 50)),
+            minimumSize:  Size(AppSizes.responsiveValue(context, 350.0), AppSizes.responsiveValue(context, 40.0))),
         onPressed: () {
           _sendToserver(context);
         },

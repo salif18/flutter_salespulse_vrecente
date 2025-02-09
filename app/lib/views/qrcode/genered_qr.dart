@@ -38,7 +38,7 @@ class _GeneredQRCodeState extends State<GeneredQRCode> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all( AppSizes.responsiveValue(context, 16),),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -69,7 +69,7 @@ class _GeneredQRCodeState extends State<GeneredQRCode> {
                             fontFamily: "roboto",
                             color: Color.fromARGB(255, 65, 65, 65))),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height:  AppSizes.responsiveValue(context, 20),),
                   if (qrData != null)
                     Container(
                       alignment: Alignment.center,
@@ -81,7 +81,7 @@ class _GeneredQRCodeState extends State<GeneredQRCode> {
                       child: QrImageView(
                         backgroundColor: Colors.orange,
                         data: qrData!,
-                        size: 200.0, // Taille du QR code
+                        size:  AppSizes.responsiveValue(context, 200), // Taille du QR code
                         version: QrVersions.auto,
                         gapless: false,
                       ),

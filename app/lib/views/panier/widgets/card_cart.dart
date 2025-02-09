@@ -18,8 +18,8 @@ class _MyCardState extends State<MyCard> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 100,
-      padding: const EdgeInsets.all(8.0),
+      height: AppSizes.responsiveValue(context, 100),
+      padding:  EdgeInsets.all( AppSizes.responsiveValue(context, 8),),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),
       color: Colors.grey[200],
       border :const Border(
@@ -34,8 +34,8 @@ class _MyCardState extends State<MyCard> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 80,
-            width: 80,
+            height:  AppSizes.responsiveValue(context, 80),
+            width: AppSizes.responsiveValue(context, 80),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               image: 
@@ -51,7 +51,7 @@ class _MyCardState extends State<MyCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  width: 100,
+                  width:  AppSizes.responsiveValue(context, 100),
                   child: Column(
                     
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +76,7 @@ class _MyCardState extends State<MyCard> {
                   ),
                 ),
                 Container(
-                  height: 40,
+                  height:  AppSizes.responsiveValue(context, 40),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1D1A30),
                     borderRadius: BorderRadius.circular(20),
@@ -88,7 +88,7 @@ class _MyCardState extends State<MyCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        width: 50,
+                        width:  AppSizes.responsiveValue(context, 50),
                         alignment: Alignment.center,
                         child: TextButton(
                           onPressed: () {
@@ -110,7 +110,7 @@ class _MyCardState extends State<MyCard> {
                         ),
                       ),
                       Container(
-                        width: 50,
+                        width:  AppSizes.responsiveValue(context, 50),
                         alignment: Alignment.center,
                         child: Text(
                           widget.item.qty.toString(),
@@ -124,7 +124,7 @@ class _MyCardState extends State<MyCard> {
                       if (widget.item.qty > 1)
                         Container(
                           alignment: Alignment.center,
-                          width: 50,
+                          width:  AppSizes.responsiveValue(context, 50),
                           child: TextButton(
                             onPressed: () {
                               Provider.of<PanierProvider>(context, listen: false)

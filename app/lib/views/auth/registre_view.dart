@@ -99,7 +99,7 @@ class _RegistreViewState extends State<RegistreView> {
           SliverList(
             delegate: SliverChildListDelegate([
               Container(
-                height: 400,
+                height: AppSizes.responsiveValue(context, 350),
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -112,9 +112,9 @@ class _RegistreViewState extends State<RegistreView> {
           SliverFillRemaining(
             hasScrollBody: false,
             child: Container(
-              height: 600,
+              height: AppSizes.responsiveValue(context, 600),
               width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
+              padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 40), left: AppSizes.responsiveValue(context, 10), right: AppSizes.responsiveValue(context, 10)),
               decoration: const BoxDecoration(
                 color: Color(0xff001c30),
                 borderRadius: BorderRadius.only(
@@ -127,7 +127,7 @@ class _RegistreViewState extends State<RegistreView> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: Column(
                         children: [
                           Text(
@@ -146,7 +146,7 @@ class _RegistreViewState extends State<RegistreView> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: TextFormField(
                         controller: _nom,
                         validator: (value) {
@@ -165,14 +165,14 @@ class _RegistreViewState extends State<RegistreView> {
                             prefixIcon: const Icon(Icons.person_3_outlined,
                                 size: AppSizes.iconLarge),
                                 isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: TextFormField(
                         controller: _entreprise,
                         validator: (value) {
@@ -191,14 +191,14 @@ class _RegistreViewState extends State<RegistreView> {
                             prefixIcon: const Icon(Icons.home_work_outlined,
                                 size: AppSizes.iconLarge),
                                 isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: TextFormField(
                         controller: _numero,
                         validator: (value) {
@@ -217,14 +217,14 @@ class _RegistreViewState extends State<RegistreView> {
                             prefixIcon: const Icon(Icons.phone_android_outlined,
                                 size: AppSizes.iconLarge),
                                 isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: TextFormField(
                         controller: _email,
                         validator: (value) {
@@ -243,15 +243,15 @@ class _RegistreViewState extends State<RegistreView> {
                             prefixIcon: const Icon(Icons.mail_outline,
                                 size: AppSizes.iconLarge),
                                 isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none)),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: AppSizes.responsiveValue(context, 10)),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: TextFormField(
                         controller: _password,
                         validator: (value) {
@@ -271,7 +271,7 @@ class _RegistreViewState extends State<RegistreView> {
                             prefixIcon: const Icon(Icons.lock_outline,
                                 size: AppSizes.iconLarge),
                                 isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                             suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -286,12 +286,12 @@ class _RegistreViewState extends State<RegistreView> {
                                 borderSide: BorderSide.none)),
                       ),
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: AppSizes.responsiveValue(context, 25)),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(400, 50),
+                            minimumSize: Size(AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40)),
                             backgroundColor:
                                 const Color.fromARGB(255, 255, 123, 0),
                           ),

@@ -87,7 +87,7 @@ class _PanierViewState extends State<PanierView> {
   slivers: [
     SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: 100,
+              expandedHeight:  AppSizes.responsiveValue(context, 100),
               pinned: true,
               floating: true,
               leading: IconButton(
@@ -122,12 +122,12 @@ class _PanierViewState extends State<PanierView> {
                             builder: (context, snaptshot) {
                               if (provider.myCart.isNotEmpty) {
                                 return Positioned(
-                                  left: 25,
-                                  bottom: 25,
+                                  left:  AppSizes.responsiveValue(context, 25),
+                                  bottom:  AppSizes.responsiveValue(context, 25),
                                   child: Badge.count(
                                     count: provider.totalArticle,
                                     backgroundColor: Colors.amber,
-                                    largeSize: 40 / 2,
+                                    largeSize:  AppSizes.responsiveValue(context, 40) / 2,
                                     textStyle: GoogleFonts.roboto(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,
@@ -143,7 +143,7 @@ class _PanierViewState extends State<PanierView> {
                     ),
                   ],
                 ),
-                const SizedBox(width: 20)
+                SizedBox(width:  AppSizes.responsiveValue(context, 20),)
               ],
               flexibleSpace: FlexibleSpaceBar(
                 title: AutoSizeText("Panier de vente",
@@ -174,7 +174,7 @@ class _PanierViewState extends State<PanierView> {
                       },
                       background: Container(
                         alignment: Alignment.centerRight,
-                        padding: const EdgeInsets.only(right: 20),
+                        padding:EdgeInsets.only(right:  AppSizes.responsiveValue(context, 20),),
                         decoration: const BoxDecoration(
                           color: Color(0xFF1D1A30),
                           borderRadius: BorderRadius.only(
@@ -204,7 +204,7 @@ class _PanierViewState extends State<PanierView> {
           return cart.isEmpty
               ? const SizedBox.shrink()
               : Container(
-                  padding: const EdgeInsets.all(15),
+                  padding:  EdgeInsets.all( AppSizes.responsiveValue(context, 15),),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -213,11 +213,11 @@ class _PanierViewState extends State<PanierView> {
                     ),
                   ),
                   width: double.infinity,
-                  height: 300,
+                  height:  AppSizes.responsiveValue(context, 300),
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: EdgeInsets.all( AppSizes.responsiveValue(context, 10),),
                         child: DateTimeFormField(
                           decoration: InputDecoration(
                             hintText: 'Ajouter une date',
@@ -241,7 +241,7 @@ class _PanierViewState extends State<PanierView> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: EdgeInsets.symmetric(vertical:  AppSizes.responsiveValue(context, 5),),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -265,7 +265,7 @@ class _PanierViewState extends State<PanierView> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: EdgeInsets.symmetric(vertical:  AppSizes.responsiveValue(context, 5),),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -287,11 +287,11 @@ class _PanierViewState extends State<PanierView> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15.0),
+                        padding: EdgeInsets.symmetric(vertical:  AppSizes.responsiveValue(context, 15),),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color.fromARGB(255, 255, 136, 0),
-                            minimumSize: const Size(400, 50),
+                            minimumSize: Size( AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40)),
                           ),
                          
                           onPressed: () {

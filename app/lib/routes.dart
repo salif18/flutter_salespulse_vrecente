@@ -52,7 +52,7 @@ class _RoutesState extends State<Routes> {
 
   Widget _buildBottomNavigation() {
     return SizedBox(
-      height: 80,
+      height: AppSizes.responsiveValue(context, 80),
       child: CurvedNavigationBar(
         index: _currentIndex,
         onTap: (index) {

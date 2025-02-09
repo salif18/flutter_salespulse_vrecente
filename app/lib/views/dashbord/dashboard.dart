@@ -220,7 +220,7 @@ class _DashboardViewState extends State<DashboardView> {
             slivers: [
               SliverAppBar(
                 backgroundColor: const Color(0xff001c30),
-                expandedHeight: 100,
+                expandedHeight: AppSizes.responsiveValue(context, 100.0),
                 pinned: true,
                 floating: true,
                 leading: IconButton(onPressed: (){
@@ -232,7 +232,7 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               SliverToBoxAdapter(
                 child: Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
                     decoration: const BoxDecoration(
                         color: Colors.transparent,
                         borderRadius: BorderRadius.only(
@@ -254,7 +254,7 @@ class _DashboardViewState extends State<DashboardView> {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         width: constraints.maxWidth,
-        height: 350,
+        height: AppSizes.responsiveValue(context, 275.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           // color: const Color(0xff001c30),
@@ -272,23 +272,23 @@ class _DashboardViewState extends State<DashboardView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 15.0),vertical: AppSizes.responsiveValue(context, 8.0)),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text("Hebdomadaire",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontSize: AppSizes.responsiveValue(context, 18),
                           color: const Color.fromARGB(255, 7, 7, 7))),
                 )),
             Padding(
-              padding: const EdgeInsets.only(left: 15),
+              padding: EdgeInsets.only(left: AppSizes.responsiveValue(context, 15.0)),
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text("$totalHebdo XOF",
                     style: GoogleFonts.roboto(
                         fontWeight: FontWeight.w600,
-                        fontSize: 18,
+                        fontSize: AppSizes.responsiveValue(context, 18.0),
                         color: const Color.fromARGB(255, 10, 10, 10))),
               ),
             ),
@@ -310,7 +310,7 @@ class _DashboardViewState extends State<DashboardView> {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
         width: constraints.maxWidth,
-        margin: const EdgeInsets.all(10),
+        margin:  EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -332,7 +332,7 @@ class _DashboardViewState extends State<DashboardView> {
                         Flexible(
                           flex: 1,
                           child: Container(
-                            width: 100,
+                            width: AppSizes.responsiveValue(context, 100),
                             alignment: Alignment.centerLeft,
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
@@ -436,9 +436,9 @@ class _DashboardViewState extends State<DashboardView> {
       flex: 1,
       child: Container(
         // width: 180,
-        height: 200,
-        margin: const EdgeInsets.all(5),
-        padding: const EdgeInsets.all(10),
+        height: AppSizes.responsiveValue(context, 200.0),
+        margin:  EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: backgroundColor,
@@ -457,7 +457,7 @@ class _DashboardViewState extends State<DashboardView> {
             Row(
               children: [
                 Icon(icon, size: AppSizes.iconLarge, color: iconColor),
-                const SizedBox(width: 10),
+                SizedBox(width: AppSizes.responsiveValue(context, 10.0)),
                 Text(
                   title,
                   style: GoogleFonts.roboto(
@@ -467,7 +467,7 @@ class _DashboardViewState extends State<DashboardView> {
                 ),
               ],
             ),
-            const SizedBox(height: 25),
+            SizedBox(height: AppSizes.responsiveValue(context, 25)),
             if (child != null) child,
           ],
         ),
@@ -479,8 +479,8 @@ class _DashboardViewState extends State<DashboardView> {
     int revenu = beneficeTotal - depenseTotal;
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
+        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
+        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
         width: constraints.maxWidth,
         decoration: BoxDecoration(
           color: const Color(0xfff0f1f5),
@@ -495,20 +495,20 @@ class _DashboardViewState extends State<DashboardView> {
             ),
           ],
         ),
-        height: 100,
+        height: AppSizes.responsiveValue(context, 100),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                const Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Icon(Icons.line_axis_rounded,
+                Padding(
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                    child: const Icon(Icons.line_axis_rounded,
                         size: AppSizes.iconLarge,
                         color: Color.fromARGB(255, 20, 151, 3))),
                 Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
@@ -520,7 +520,7 @@ class _DashboardViewState extends State<DashboardView> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(5),
+              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
               child: Row(
                 children: [
                   FittedBox(
@@ -530,7 +530,7 @@ class _DashboardViewState extends State<DashboardView> {
                       style: GoogleFonts.roboto(fontSize: AppSizes.fontMedium,fontWeight:FontWeight.bold , color: revenu < 0? Colors.red : Colors.black),
                     ),
                   ),
-                  const SizedBox(width: 25),
+                  SizedBox(width: AppSizes.responsiveValue(context, 25)),
                   revenu > 0
                       ? const Icon(
                           Icons.arrow_upward_rounded,
@@ -556,7 +556,7 @@ class _DashboardViewState extends State<DashboardView> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
         width: constraints.maxWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -564,8 +564,8 @@ class _DashboardViewState extends State<DashboardView> {
             Flexible(
               flex: 1,
               child: Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(10),
+                margin: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
                 decoration: BoxDecoration(
                   color: const Color(0xfff764ba),
                   borderRadius: BorderRadius.circular(20),
@@ -579,20 +579,20 @@ class _DashboardViewState extends State<DashboardView> {
                     ),
                   ],
                 ),
-                height: 100,
+                height: AppSizes.responsiveValue(context, 100.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        const Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Icon(Icons.monetization_on,
+                        Padding(
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                            child: const Icon(Icons.monetization_on,
                                 size: AppSizes.iconLarge,
                                 color: Color.fromARGB(255, 255, 230, 1))),
                         Padding(
-                            padding: const EdgeInsets.all(5),
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
@@ -605,7 +605,7 @@ class _DashboardViewState extends State<DashboardView> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
@@ -623,8 +623,8 @@ class _DashboardViewState extends State<DashboardView> {
             Flexible(
               flex: 1,
               child: Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(10),
+                margin: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
                 decoration: BoxDecoration(
                   color: const Color(0xffffffff),
                   borderRadius: BorderRadius.circular(20),
@@ -638,23 +638,23 @@ class _DashboardViewState extends State<DashboardView> {
                     ),
                   ],
                 ),
-                width: 180,
-                height: 100,
+                width: AppSizes.responsiveValue(context, 180.0),
+                height: AppSizes.responsiveValue(context, 100.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        const Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Icon(
+                        Padding(
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                            child:const Icon(
                               Icons.attach_money_outlined,
                               size: AppSizes.iconLarge,
                               color: Color.fromARGB(255, 16, 230, 23),
                             )),
                         Padding(
-                            padding: const EdgeInsets.all(5),
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
@@ -666,7 +666,7 @@ class _DashboardViewState extends State<DashboardView> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
@@ -689,14 +689,14 @@ class _DashboardViewState extends State<DashboardView> {
   Widget _statsCaisse2(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: const EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
         width: constraints.maxWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.all(5),
-              padding: const EdgeInsets.all(10),
+              margin:EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
               decoration: BoxDecoration(
                 color: const Color(0xff2f80ed),
                 borderRadius: BorderRadius.circular(20),
@@ -710,23 +710,23 @@ class _DashboardViewState extends State<DashboardView> {
                   ),
                 ],
               ),
-              width: 180,
-              height: 100,
+              width: AppSizes.responsiveValue(context, 180.0),
+              height: AppSizes.responsiveValue(context, 100.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      const Padding(
-                          padding: EdgeInsets.all(5),
-                          child: Icon(
+                      Padding(
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                          child: const Icon(
                             Icons.monetization_on,
                             size: AppSizes.iconLarge,
                             color: Color.fromARGB(255, 255, 255, 255),
                           )),
                       Padding(
-                          padding: const EdgeInsets.all(5),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
@@ -739,7 +739,7 @@ class _DashboardViewState extends State<DashboardView> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
@@ -755,8 +755,8 @@ class _DashboardViewState extends State<DashboardView> {
             Flexible(
               flex: 1,
               child: Container(
-                margin: const EdgeInsets.all(5),
-                padding: const EdgeInsets.all(10),
+                margin: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
                 decoration: BoxDecoration(
                   color: const Color(0xFF292D4E),
                   borderRadius: BorderRadius.circular(20),
@@ -770,20 +770,20 @@ class _DashboardViewState extends State<DashboardView> {
                     ),
                   ],
                 ),
-                height: 100,
+                height: AppSizes.responsiveValue(context, 100.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        const Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Icon(Icons.monetization_on,
+                        Padding(
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                            child:const Icon(Icons.monetization_on,
                                 size: AppSizes.iconLarge,
                                 color: Color.fromARGB(255, 255, 17, 0))),
                         Padding(
-                            padding: const EdgeInsets.all(5),
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
@@ -796,7 +796,7 @@ class _DashboardViewState extends State<DashboardView> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(5),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
@@ -820,9 +820,9 @@ class _DashboardViewState extends State<DashboardView> {
   Widget _statsAnnuel(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: const EdgeInsets.all(5),
+        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
         width: constraints.maxWidth,
-        height: 320,
+        height: AppSizes.responsiveValue(context, 270),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: const Color.fromARGB(255, 223, 223, 223),
@@ -831,13 +831,13 @@ class _DashboardViewState extends State<DashboardView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 15.0),vertical:AppSizes.responsiveValue(context, 5.0)),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text("Annuel",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                          fontSize: AppSizes.responsiveValue(context, 18.0),
                           color: const Color.fromARGB(255, 12, 12, 12))),
                 )),
             // Padding(

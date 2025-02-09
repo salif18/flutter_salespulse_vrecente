@@ -98,7 +98,7 @@ class _PopulaireViewState extends State<PopulaireView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: 100,
+              expandedHeight: AppSizes.responsiveValue(context, 100),
               pinned: true,
               floating: true,
               centerTitle: true,
@@ -126,7 +126,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                     } else if (snapshot.hasError) {
                       return Center(
                           child: Container(
-                        padding: const EdgeInsets.all(8),
+                        padding:EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                         height: MediaQuery.of(context).size.width * 0.4,
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
@@ -146,7 +146,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                                       fontSize: AppSizes.fontMedium),
                                 ))
                             ),
-                            const SizedBox(width: 40),
+                            SizedBox(width: AppSizes.responsiveValue(context, 40),),
                             IconButton(
                                 onPressed: () {
                                   _refresh();
@@ -164,7 +164,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                       return SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
@@ -174,7 +174,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                             columns: [
                               DataColumn(
                                 label: Container(
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
@@ -186,7 +186,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                               ),
                               DataColumn(
                                 label: Container(
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
@@ -198,7 +198,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                               ),
                               DataColumn(
                                 label: Container(
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Nombre d'achat",
                                     style: GoogleFonts.roboto(
@@ -214,7 +214,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                                 cells: [
                                   DataCell(
                                     Container(
-                                      padding: const EdgeInsets.all(5),
+                                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                       child: Text(
                                         article.id.nom,
                                         style: GoogleFonts.roboto(
@@ -225,7 +225,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                                   ),
                                   DataCell(
                                     Container(
-                                      padding: const EdgeInsets.all(5),
+                                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                       child: Text(
                                         article.id.categories,
                                         style: GoogleFonts.roboto(
@@ -236,7 +236,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                                   ),
                                   DataCell(
                                     Container(
-                                      padding: const EdgeInsets.all(5),
+                                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                       child: Text(
                                         article.totalVendu.toString(),
                                         style: GoogleFonts.roboto(

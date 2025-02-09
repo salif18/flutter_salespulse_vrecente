@@ -85,7 +85,7 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 400,
+                  height: AppSizes.responsiveValue(context, 400),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/logos/logo2.jpg"), 
@@ -94,9 +94,9 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 ),
                 Container(
-                  height: 400,
+                  height: AppSizes.responsiveValue(context, 400),
                   width: MediaQuery.of(context).size.width,
-                  padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
+                  padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 50), left: AppSizes.responsiveValue(context, 10), right: AppSizes.responsiveValue(context, 10)),
                   decoration: const BoxDecoration(
                     color: Color(0xff001c30),
                     borderRadius: BorderRadius.only(
@@ -109,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                           child: TextFormField(
                             controller: _contacts,
                             validator: (value) {
@@ -126,7 +126,7 @@ class _LoginViewState extends State<LoginView> {
                               fillColor: const Color(0xfff0fcf3),
                               prefixIcon: const Icon(Icons.person_2_outlined, size: AppSizes.iconLarge),
                               isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding:EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                                 borderSide: BorderSide.none,
@@ -134,9 +134,9 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(height: AppSizes.responsiveValue(context, 10)),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                           child: TextFormField(
                             controller: _password,
                             validator: (value) {
@@ -153,7 +153,7 @@ class _LoginViewState extends State<LoginView> {
                               fillColor: const Color(0xfff0fcf3),
                               prefixIcon: const Icon(Icons.lock_outline, size: AppSizes.iconLarge),
                               isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -171,7 +171,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         // const SizedBox(height: 5),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -191,10 +191,10 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(400, 50),
+                              minimumSize: Size(AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40)),
                               backgroundColor: const Color.fromARGB(255, 255, 123, 0),
                             ),
                             onPressed: () {

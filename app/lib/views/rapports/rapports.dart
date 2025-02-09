@@ -155,7 +155,7 @@ class _RapportViewState extends State<RapportView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: 100,
+              expandedHeight:AppSizes.responsiveValue(context, 100),
               pinned: true,
               floating: true,
               leading: IconButton(
@@ -176,15 +176,15 @@ class _RapportViewState extends State<RapportView> {
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: 150,
+                height: AppSizes.responsiveValue(context, 150),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     LayoutBuilder(builder: (context, constraints) {
                       return Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16),),
                         constraints:
-                            const BoxConstraints(maxWidth: 250, minHeight: 20),
+                            BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 250), minHeight: AppSizes.responsiveValue(context, 20),),
                         child: DateTimeFormField(
                           decoration: InputDecoration(
                             hintText: 'Choisir pour une date',
@@ -228,7 +228,7 @@ class _RapportViewState extends State<RapportView> {
                   } else if (snapshot.hasError) {
                     return Center(
                         child: Container(
-                      padding: const EdgeInsets.all(8),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
                       // height: 120,
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.width * 0.4,
@@ -248,7 +248,7 @@ class _RapportViewState extends State<RapportView> {
                                       fontSize: AppSizes.fontMedium),
                                 )),
                           ),
-                          const SizedBox(width: 40),
+                          SizedBox(width: AppSizes.responsiveValue(context, 40),),
                           IconButton(
                               onPressed: () {
                                 _refresh();
@@ -301,7 +301,7 @@ class _RapportViewState extends State<RapportView> {
                                   constraints: BoxConstraints(
                                     maxWidth: MediaQuery.of(context).size.width,
                                   ),
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
@@ -317,7 +317,7 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
@@ -333,7 +333,7 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Prix d'achat",
                                     style: GoogleFonts.roboto(
@@ -349,7 +349,7 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Prix de vente",
                                     style: GoogleFonts.roboto(
@@ -365,7 +365,7 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Quantités",
                                     style: GoogleFonts.roboto(
@@ -381,7 +381,7 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Somme",
                                     style: GoogleFonts.roboto(
@@ -397,7 +397,7 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Benefices",
                                     style: GoogleFonts.roboto(
@@ -419,7 +419,7 @@ class _RapportViewState extends State<RapportView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       article.nom,
                                       style: GoogleFonts.roboto(
@@ -430,7 +430,7 @@ class _RapportViewState extends State<RapportView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       article.categories,
                                       style: GoogleFonts.roboto(
@@ -441,7 +441,7 @@ class _RapportViewState extends State<RapportView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       "${article.prixAchat.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
@@ -452,7 +452,7 @@ class _RapportViewState extends State<RapportView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       "${article.prixVente.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
@@ -463,7 +463,7 @@ class _RapportViewState extends State<RapportView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       article.qty.toString(),
                                       style: GoogleFonts.roboto(
@@ -474,7 +474,7 @@ class _RapportViewState extends State<RapportView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       "${somme.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
@@ -485,7 +485,7 @@ class _RapportViewState extends State<RapportView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       "${benefices.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
@@ -510,8 +510,8 @@ class _RapportViewState extends State<RapportView> {
       bottomNavigationBar: LayoutBuilder(builder: (context, constraints) {
         return Container(
           width: constraints.maxWidth,
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          height: 150,
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 15), vertical: AppSizes.responsiveValue(context, 20)),
+          height: AppSizes.responsiveValue(context, 150),
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 248, 248, 248),
               border: Border.all(
@@ -521,7 +521,7 @@ class _RapportViewState extends State<RapportView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 100,
+                width: AppSizes.responsiveValue(context, 100),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

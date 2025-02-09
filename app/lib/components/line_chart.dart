@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:salespulse/models/chart_model.dart';
 import 'package:salespulse/models/stats_year_model.dart';
+import 'package:salespulse/utils/app_size.dart';
 
 class LineChartWidget extends StatelessWidget {
   final List<StatsYearModel> data;
@@ -19,7 +20,7 @@ class LineChartWidget extends StatelessWidget {
         .toList();
 
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0),),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +28,7 @@ class LineChartWidget extends StatelessWidget {
           AspectRatio(
             aspectRatio: 2,
             child: Container(
-              padding: const EdgeInsets.only(right: 25),
+              padding:  EdgeInsets.only(right: AppSizes.responsiveValue(context, 25.0),),
               decoration: BoxDecoration(
                 color: const Color(0xFF292D4E),
                 boxShadow: [

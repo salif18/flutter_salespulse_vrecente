@@ -157,7 +157,7 @@ class _CategoriesViewState extends State<CategoriesView> {
       body: CustomScrollView(slivers: [
         SliverAppBar(
           backgroundColor: const Color(0xff001c30),
-          expandedHeight: 80,
+          expandedHeight: AppSizes.responsiveValue(context, 80.0),
           pinned: true,
           floating: true,
           leading: IconButton(
@@ -183,7 +183,7 @@ class _CategoriesViewState extends State<CategoriesView> {
               return SliverToBoxAdapter(
                 child: Center(
                     child: Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                   height: MediaQuery.of(context).size.width * 0.4,
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
@@ -193,7 +193,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(0.0),
+                        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 0.0)),
                         child: SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.7,                          
                                 child: Text(
@@ -202,7 +202,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                                       fontSize: AppSizes.fontMedium),
                                 ))
                       ),
-                      const SizedBox(width: 40),
+                      SizedBox(width: AppSizes.responsiveValue(context, 40.0)),
                       IconButton(
                           onPressed: () {
                             _refresh();
@@ -235,12 +235,12 @@ class _CategoriesViewState extends State<CategoriesView> {
                       },
                       background: Container(
                         color: Colors.red,
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Icon(Icons.delete_outline,
+                            const Icon(Icons.delete_outline,
                                 color: Colors.white, size: AppSizes.iconLarge),
-                            SizedBox(width: 50),
+                            SizedBox(width: AppSizes.responsiveValue(context, 50.0)),
                           ],
                         ),
                       ),
@@ -322,10 +322,10 @@ class _CategoriesViewState extends State<CategoriesView> {
                           color: Colors.purpleAccent,
                         ),
                         isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: AppSizes.responsiveValue(context, 20.0)),
                     ElevatedButton(
                       onPressed: () {
                         _sendToserver(context);
@@ -333,7 +333,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:const Color.fromARGB(255, 255, 136, 0),
-                        minimumSize: const Size(400, 50),
+                        minimumSize: Size(AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40.0)),
                       ),
                       child: Text(
                         "Enregistrer",

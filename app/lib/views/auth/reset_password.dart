@@ -73,17 +73,17 @@ void dispose(){
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: AppSizes.responsiveValue(context, 80),
         backgroundColor: Colors.grey[200],
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new_rounded, size: AppSizes.iconLarge)),
       ),
       body: Container(
-        padding: const EdgeInsets.all(10),
+        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10)),
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10)),
             child: Form(
               key: _globalKey,
               child: Column(
@@ -91,7 +91,7 @@ void dispose(){
                   _text(context),
                   _formNumberField(context),
                   _formEmailField(context),
-                  const SizedBox(height: 100),
+                  SizedBox(height: AppSizes.responsiveValue(context,100)),
                   _sendButton(context)
                 ],
               ),
@@ -104,17 +104,17 @@ void dispose(){
 
   Widget _text(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
             child: Text("Réinitialiser le mot de passe",
                 style: GoogleFonts.roboto(
                     fontSize: AppSizes.fontLarge, fontWeight: FontWeight.w600)),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
             child: Text(
                 "Veuillez entrer les bonnes informations pour pouvoir nous aider à réinitialiser votre mot de passe",
                 style: GoogleFonts.roboto(
@@ -127,7 +127,7 @@ void dispose(){
 
   Widget _formNumberField(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
       child: TextFormField(
         controller: _numero,
         validator: (value) {
@@ -140,7 +140,7 @@ void dispose(){
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.phone_android_rounded, size: AppSizes.iconLarge),
           isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
           filled: true,
           fillColor: Colors.grey[100],
           hintText: "Numéro",
@@ -154,7 +154,7 @@ void dispose(){
 
   Widget _formEmailField(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
       child: TextFormField(
         controller: _email,
         validator: (value) {
@@ -167,7 +167,7 @@ void dispose(){
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.mail_outline, size: AppSizes.iconLarge),
           isDense: true, // Réduit la hauteur
-                              contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8.0)),
           filled: true,
           fillColor: Colors.grey[100],
           hintText: "Email",
@@ -183,7 +183,7 @@ void dispose(){
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             backgroundColor:const Color.fromARGB(255, 255, 115, 0),
-            minimumSize: const Size(350, 50)),
+            minimumSize: Size(AppSizes.responsiveValue(context, 350), AppSizes.responsiveValue(context, 40))),
         onPressed: () {
           _sendToserver(context);
         },

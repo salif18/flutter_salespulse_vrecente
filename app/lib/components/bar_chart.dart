@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salespulse/models/chart_model.dart';
 import 'package:salespulse/models/stats_week_model.dart';
+import 'package:salespulse/utils/app_size.dart';
 
 
 class BarChartWidget extends StatefulWidget {
@@ -27,11 +28,11 @@ class _BarChartWidgetState extends State<BarChartWidget> {
 
 
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0)),
       child: AspectRatio(
           aspectRatio: 1.8,
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0)),
             decoration: BoxDecoration(
                 color: const Color(0xFF292D4E),
                 borderRadius: BorderRadius.circular(20)),
@@ -122,10 +123,10 @@ class _BarChartWidgetState extends State<BarChartWidget> {
       montant = "${modelBarData[group.x].y}";
       return BarTooltipItem(
           "$weekDay\n",
-          const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
+          TextStyle(
+              fontSize: AppSizes.responsiveValue(context, 20.0), fontWeight: FontWeight.w500, color: Colors.white),
           children: [
-            TextSpan(text: montant, style: const TextStyle(fontSize: 16,color:Colors.amber))
+            TextSpan(text: montant, style: TextStyle(fontSize: AppSizes.responsiveValue(context, 16.0),color:Colors.amber))
           ]);
     }));
   }
@@ -137,49 +138,49 @@ class _BarChartWidgetState extends State<BarChartWidget> {
       case 0:
         text = Text("Lun",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize: AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 1:
         text = Text("Mar",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize: AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 2:
         text = Text("Mer",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize: AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 3:
         text = Text("Jeu",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize: AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 4:
         text = Text("Ven",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize: AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 5:
         text = Text("Sam",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize: AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 6:
         text = Text("Dim",
             style: GoogleFonts.roboto(
-                fontSize: 14,
+                fontSize:AppSizes.responsiveValue(context, 14.0),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;

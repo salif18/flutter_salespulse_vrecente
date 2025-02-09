@@ -128,7 +128,7 @@ class _VenteViewState extends State<VenteView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: 100,
+              expandedHeight:  AppSizes.responsiveValue(context, 100),
               pinned: true,
               floating: true,
               leading: IconButton(
@@ -146,7 +146,7 @@ class _VenteViewState extends State<VenteView> {
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: 150,
+                height:  AppSizes.responsiveValue(context, 150),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -168,8 +168,8 @@ class _VenteViewState extends State<VenteView> {
                       icon: const Icon(Icons.workspace_premium,
                           color: Color.fromARGB(255, 255, 255, 255), size: 30),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(
+                      width:  AppSizes.responsiveValue(context, 20)
                     )
                   ],
                 ),
@@ -205,7 +205,7 @@ class _VenteViewState extends State<VenteView> {
                                   style: GoogleFonts.roboto(
                                       fontSize: AppSizes.fontMedium),
                                 ))),
-                        const SizedBox(width: 40),
+                        SizedBox(width:  AppSizes.responsiveValue(context, 40)),
                         IconButton(
                             onPressed: () {
                               _refresh();
@@ -242,7 +242,7 @@ class _VenteViewState extends State<VenteView> {
                                   constraints: BoxConstraints(
                                     maxWidth: MediaQuery.of(context).size.width,
                                   ),
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all( AppSizes.responsiveValue(context, 5)),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
@@ -258,7 +258,7 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all( AppSizes.responsiveValue(context, 5)),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
@@ -274,7 +274,7 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                   child: Text(
                                     "Prix de vente",
                                     style: GoogleFonts.roboto(
@@ -290,7 +290,7 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                   child: Text(
                                     "Quantités",
                                     style: GoogleFonts.roboto(
@@ -306,7 +306,7 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                   child: Text(
                                     "Date",
                                     style: GoogleFonts.roboto(
@@ -322,7 +322,7 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                   child: Text(
                                     "Actions",
                                     style: GoogleFonts.roboto(
@@ -340,7 +340,7 @@ class _VenteViewState extends State<VenteView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                     child: Text(
                                       article.nom,
                                       style: GoogleFonts.roboto(
@@ -351,7 +351,7 @@ class _VenteViewState extends State<VenteView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                     child: Text(
                                       article.categories,
                                       style: GoogleFonts.roboto(
@@ -362,7 +362,7 @@ class _VenteViewState extends State<VenteView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                     child: Text(
                                       "${article.prixVente} XOF",
                                       style: GoogleFonts.roboto(
@@ -373,7 +373,7 @@ class _VenteViewState extends State<VenteView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                     child: Text(
                                       article.qty.toString(),
                                       style: GoogleFonts.roboto(
@@ -384,7 +384,7 @@ class _VenteViewState extends State<VenteView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                     child: Text(
                                       DateFormat("dd MMM yyyy")
                                           .format(article.dateVente),
@@ -396,7 +396,7 @@ class _VenteViewState extends State<VenteView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
                                     child: Row(
                                       children: [
                                         Text(

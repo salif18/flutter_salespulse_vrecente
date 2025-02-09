@@ -86,10 +86,10 @@ class _UpdatePasswordState extends State<UpdatePassword> {
             )),
       ),
       body: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0)),
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0)),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -110,11 +110,11 @@ class _UpdatePasswordState extends State<UpdatePassword> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(10),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                 child: Text(
                   "Changer de mot de passe",
                   style: GoogleFonts.roboto(
@@ -123,7 +123,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                 child: Text(
                   "Votre mot de passe doit contenir au moins 6 caractères",
                   style: GoogleFonts.roboto(
@@ -135,7 +135,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 10.0)),
           child: TextFormField(
             controller: _currentPassword,
             validator: (value) {
@@ -153,7 +153,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               isDense: true, // Réduit la hauteur
-              contentPadding: const EdgeInsets.symmetric(vertical: 10.0 ,horizontal: 10.0),
+              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 10.0) ,horizontal: AppSizes.responsiveValue(context, 10.0)),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -163,7 +163,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 10.0)),
           child: TextFormField(
             controller: _newPassword,
             validator: (value) {
@@ -181,7 +181,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
               hintStyle: GoogleFonts.aBeeZee(
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               isDense: true, // Réduit la hauteur
-              contentPadding: const EdgeInsets.symmetric(vertical: 10.0 ,horizontal: 10.0),
+              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 10.0) ,horizontal: AppSizes.responsiveValue(context, 10.0)),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -191,7 +191,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 10),
+          padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 10.0)),
           child: TextFormField(
             controller: _passwordConfirmation,
             validator: (value) {
@@ -210,7 +210,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
                   fontSize: AppSizes.fontMedium, fontWeight: FontWeight.w400),
               // prefixIcon: const Icon(Icons.lock_outline_rounded, size: 33),
               isDense: true, // Réduit la hauteur
-              contentPadding: const EdgeInsets.symmetric(vertical: 10.0 ,horizontal: 10.0),
+              contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 10.0) ,horizontal: AppSizes.responsiveValue(context, 10.0)),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
                 borderSide: BorderSide.none,
@@ -219,7 +219,7 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
           child: Row(children: [
             TextButton(
                 onPressed: () {
@@ -233,12 +233,12 @@ class _UpdatePasswordState extends State<UpdatePassword> {
           ]),
         ),
         Padding(
-          padding: const EdgeInsets.all(5),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color.fromARGB(255, 255, 115, 0),
               elevation: 5,
-              fixedSize: const Size(400, 50),
+              fixedSize: Size(AppSizes.responsiveValue(context, 400.0), AppSizes.responsiveValue(context, 40.0)),
             ),
             onPressed: () {
               _sendUpdate();

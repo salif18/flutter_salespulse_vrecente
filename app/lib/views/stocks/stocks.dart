@@ -272,7 +272,7 @@ class _StocksViewState extends State<StocksView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: 100,
+              expandedHeight: AppSizes.responsiveValue(context, 100.0),
               pinned: true,
               floating: true,
               leading: IconButton(
@@ -352,14 +352,14 @@ class _StocksViewState extends State<StocksView> {
                             builder: (context, snaptshot) {
                               if (provider.myCart.isNotEmpty) {
                                 return Positioned(
-                                  left: 25,
-                                  bottom: 25,
+                                  left: AppSizes.responsiveValue(context, 25.0),
+                                  bottom: AppSizes.responsiveValue(context, 25.0),
                                   child: Badge.count(
                                     count: provider.totalArticle,
                                     backgroundColor: Colors.amber,
-                                    largeSize: 40 / 2,
+                                    largeSize: AppSizes.responsiveValue(context, 40.0) / 2,
                                     textStyle: GoogleFonts.roboto(
-                                      fontSize: 13,
+                                      fontSize: AppSizes.responsiveValue(context, 13.0),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -373,11 +373,11 @@ class _StocksViewState extends State<StocksView> {
                     ),
                   ],
                 ),
-                const SizedBox(width: 20)
+                SizedBox(width: AppSizes.responsiveValue(context, 20.0),)
               ],
               flexibleSpace: FlexibleSpaceBar(
                 title: AutoSizeText("Stocks",
-                    minFontSize: 16,
+                    minFontSize:16.0,
                     style: GoogleFonts.roboto(
                         fontSize: AppSizes.fontLarge, color: Colors.white)),
               ),
@@ -385,34 +385,34 @@ class _StocksViewState extends State<StocksView> {
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: 150,
+                height: AppSizes.responsiveValue(context, 150.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      constraints: const BoxConstraints(
-                        maxWidth: 255,
-                        minHeight: 20,
+                      padding:  EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16.0),),
+                      constraints:  BoxConstraints(
+                        maxWidth: AppSizes.responsiveValue(context, 260.0),
+                        minHeight: AppSizes.responsiveValue(context, 20.0),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                         child: DropdownButtonFormField<String>(
                           isDense: false,
                           dropdownColor: const Color(0xff001c30),
-                          menuMaxHeight: 200,
+                          menuMaxHeight: AppSizes.responsiveValue(context, 200.0),
                           borderRadius: BorderRadius.circular(10),
                           value: _categorieValue,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromARGB(255, 255, 136, 0),
+                            fillColor: const Color.fromARGB(255, 255, 136, 0),
                             // Color.fromARGB(255, 82, 119, 175),
                             hintText: "Choisir une categorie",
                             hintStyle: TextStyle(
                                 fontFamily: "roboto",
-                                fontSize: 12,
+                                fontSize: AppSizes.responsiveValue(context, 12.0),
                                 color: Colors.white),
-                            border: OutlineInputBorder(
+                            border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
@@ -423,7 +423,7 @@ class _StocksViewState extends State<StocksView> {
                               child: Text(
                                 categorie.name,
                                 style: GoogleFonts.roboto(
-                                    fontSize: 12, color: Colors.white),
+                                    fontSize: AppSizes.responsiveValue(context, 12.0),color: Colors.white),
                               ),
                             );
                           }).toList(),
@@ -446,8 +446,8 @@ class _StocksViewState extends State<StocksView> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(
+                      width: AppSizes.responsiveValue(context, 20.0),
                     ),
                     IconButton(
                         onPressed: () {
@@ -492,7 +492,7 @@ class _StocksViewState extends State<StocksView> {
                                   style: GoogleFonts.roboto(
                                       fontSize: AppSizes.fontMedium),
                                 ))),
-                        const SizedBox(width: 40),
+                        SizedBox(width: AppSizes.responsiveValue(context, 40.0),),
                         IconButton(
                             onPressed: () {
                               _refresh();
@@ -529,9 +529,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                   child: Text(
                                     "Photo",
                                     style: GoogleFonts.roboto(
@@ -546,12 +546,12 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
                                   constraints: BoxConstraints(
                                     maxWidth: MediaQuery.of(context).size.width,
                                   ),
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
@@ -566,9 +566,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
@@ -583,9 +583,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Prix d'achat",
                                     style: GoogleFonts.roboto(
@@ -600,9 +600,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height:AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Prix de vente",
                                     style: GoogleFonts.roboto(
@@ -617,9 +617,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Quantités",
                                     style: GoogleFonts.roboto(
@@ -634,9 +634,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Date",
                                     style: GoogleFonts.roboto(
@@ -651,9 +651,9 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: 50,
+                                  height: AppSizes.responsiveValue(context, 50.0),
                                   color: Colors.orange,
-                                  padding: const EdgeInsets.all(5),
+                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                   child: Text(
                                     "Actions",
                                     style: GoogleFonts.roboto(
@@ -671,23 +671,23 @@ class _StocksViewState extends State<StocksView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
                                     child: article.image.isEmpty
                                         ? Image.asset(
                                             "assets/images/defaultImg.png",
-                                            width: 50,
-                                            height: 50,
+                                            width: AppSizes.responsiveValue(context, 50.0),
+                                            height: AppSizes.responsiveValue(context, 50.0),
                                           )
                                         : Image.network(
                                             article.image,
-                                            width: 50,
-                                            height: 50,
+                                            width: AppSizes.responsiveValue(context, 50.0),
+                                            height: AppSizes.responsiveValue(context, 50.0),
                                           ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       article.nom,
                                       style: GoogleFonts.roboto(
@@ -698,7 +698,7 @@ class _StocksViewState extends State<StocksView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       article.categories,
                                       style: GoogleFonts.roboto(
@@ -709,7 +709,7 @@ class _StocksViewState extends State<StocksView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       "${article.prixAchat} XOF",
                                       style: GoogleFonts.roboto(
@@ -720,7 +720,7 @@ class _StocksViewState extends State<StocksView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       "${article.prixVente} XOF",
                                       style: GoogleFonts.roboto(
@@ -731,7 +731,7 @@ class _StocksViewState extends State<StocksView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       article.stocks.toString(),
                                       style: GoogleFonts.roboto(
@@ -742,7 +742,7 @@ class _StocksViewState extends State<StocksView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Text(
                                       DateFormat("dd MMM yyyy")
                                           .format(article.dateAchat),
@@ -754,7 +754,7 @@ class _StocksViewState extends State<StocksView> {
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: const EdgeInsets.all(5),
+                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
                                     child: Row(
                                       children: [
                                         if (article.stocks > 0)
@@ -836,7 +836,7 @@ class _StocksViewState extends State<StocksView> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15),),
           height: MediaQuery.of(context).size.height * 0.95,
           child: Form(
             key: _globalKey,
@@ -847,7 +847,7 @@ class _StocksViewState extends State<StocksView> {
                       style: GoogleFonts.roboto(
                           fontSize: AppSizes.fontMedium,
                           fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -867,19 +867,19 @@ class _StocksViewState extends State<StocksView> {
                       ),
                       if (_articleImage != null)
                         Image.file(File(_articleImage!.path),
-                            width: 100, height: 100),
+                            width: AppSizes.responsiveValue(context, 100), height: AppSizes.responsiveValue(context, 100)),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                 SizedBox(height: AppSizes.responsiveValue(context, 20),),
                   TextFormField(
                     keyboardType: TextInputType.name,
                     controller: _nameController,
-                    decoration: const InputDecoration(
+                    decoration:InputDecoration(
                         labelText: "Nom du produit",
                         isDense: true, // Réduit la hauteur
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0),
-                        border: OutlineInputBorder()),
+                            vertical: AppSizes.responsiveValue(context, 10), horizontal: AppSizes.responsiveValue(context, 10)),
+                        border: const OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Le nom du produit est requis";
@@ -887,16 +887,16 @@ class _StocksViewState extends State<StocksView> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height:AppSizes.responsiveValue(context, 20)),
                   TextFormField(
                     controller: _prixAchatController,
                     keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         labelText: "Prix d'achat",
                         isDense: true, // Réduit la hauteur
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0),
-                        border: OutlineInputBorder()),
+                            vertical: AppSizes.responsiveValue(context, 10), horizontal: AppSizes.responsiveValue(context, 10)),
+                        border: const OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "La description est requise";
@@ -904,16 +904,16 @@ class _StocksViewState extends State<StocksView> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: _prixVenteController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         labelText: "Prix de vente",
                         isDense: true, // Réduit la hauteur
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0),
-                        border: OutlineInputBorder()),
+                       contentPadding: EdgeInsets.symmetric(
+                            vertical: AppSizes.responsiveValue(context, 10), horizontal: AppSizes.responsiveValue(context, 10)),
+                        border: const OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Le prix est requis";
@@ -923,16 +923,16 @@ class _StocksViewState extends State<StocksView> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 10)),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: _stockController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         labelText: "Stock du produit",
                         isDense: true, // Réduit la hauteur
                         contentPadding: EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10.0),
-                        border: OutlineInputBorder()),
+                            vertical: AppSizes.responsiveValue(context, 10), horizontal: AppSizes.responsiveValue(context, 10)),
+                        border: const OutlineInputBorder()),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Le stock est requis";
@@ -942,11 +942,11 @@ class _StocksViewState extends State<StocksView> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   DropdownButtonFormField<String>(
                     dropdownColor: const Color(0xff001c30),
                     isDense: false,
-                    menuMaxHeight: 200,
+                    menuMaxHeight: AppSizes.responsiveValue(context, 200),
                     borderRadius: BorderRadius.circular(10),
                     value: _categoryController,
                     decoration: const InputDecoration(
@@ -975,9 +975,9 @@ class _StocksViewState extends State<StocksView> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10)),
                     child: DateTimeFormField(
                       decoration: InputDecoration(
                         hintText: 'Ajouter une date',
@@ -1000,11 +1000,11 @@ class _StocksViewState extends State<StocksView> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 255, 136, 0),
-                        minimumSize: const Size(400, 50)),
+                        minimumSize: Size( AppSizes.responsiveValue(context, 400),  AppSizes.responsiveValue(context, 40))),
                     onPressed: () {
                       _sendNewStocksToServer();
                       Navigator.pop(context);
@@ -1034,7 +1034,7 @@ class _StocksViewState extends State<StocksView> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15)),
           height: MediaQuery.of(context).size.height * 0.95,
           child: Form(
             key: _globalKey,
@@ -1045,7 +1045,7 @@ class _StocksViewState extends State<StocksView> {
                       style: GoogleFonts.roboto(
                           fontSize: AppSizes.fontMedium,
                           fontWeight: FontWeight.w500)),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -1065,10 +1065,10 @@ class _StocksViewState extends State<StocksView> {
                       ),
                       if (_articleImage != null)
                         Image.file(File(_articleImage!.path),
-                            width: 100, height: 100),
+                            width: AppSizes.responsiveValue(context, 100), height: AppSizes.responsiveValue(context, 100)),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   TextFormField(
                     keyboardType: TextInputType.name,
                     controller: _nameController,
@@ -1076,7 +1076,7 @@ class _StocksViewState extends State<StocksView> {
                         labelText: "Nom du produit",
                         border: OutlineInputBorder()),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   TextFormField(
                     controller: _prixAchatController,
                     keyboardType: TextInputType.number,
@@ -1084,7 +1084,7 @@ class _StocksViewState extends State<StocksView> {
                         labelText: "Prix d'achat",
                         border: OutlineInputBorder()),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: _prixVenteController,
@@ -1092,17 +1092,17 @@ class _StocksViewState extends State<StocksView> {
                         labelText: "Prix de vente",
                         border: OutlineInputBorder()),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   TextFormField(
                     keyboardType: TextInputType.number,
                     controller: _stockController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         labelText: "Stock du produit",
                         isDense: true, // Réduit la hauteur
-                        contentPadding: EdgeInsets.symmetric(vertical: 8.0),
-                        border: OutlineInputBorder()),
+                        contentPadding: EdgeInsets.symmetric(vertical: AppSizes.responsiveValue(context, 8)),
+                        border:const OutlineInputBorder()),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   DropdownButtonFormField<String>(
                     value: _categoryController,
                     decoration: const InputDecoration(
@@ -1120,11 +1120,11 @@ class _StocksViewState extends State<StocksView> {
                       });
                     },
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height:  AppSizes.responsiveValue(context, 20)),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 255, 136, 0),
-                        minimumSize: const Size(400, 50)),
+                        minimumSize: Size( AppSizes.responsiveValue(context, 400),  AppSizes.responsiveValue(context, 40))),
                     onPressed: () {
                       _sendUpdateStockToServer(article);
                       Navigator.pop(context);
@@ -1138,7 +1138,7 @@ class _StocksViewState extends State<StocksView> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 240, 27, 27),
-                        minimumSize: const Size(400, 50)),
+                        minimumSize: Size( AppSizes.responsiveValue(context, 400),  AppSizes.responsiveValue(context, 40))),
                     onPressed: () {
                       _removeArticles(article);
                     },

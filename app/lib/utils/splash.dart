@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salespulse/routes.dart';
+import 'package:salespulse/utils/app_size.dart';
 
 
 class MySplashScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
           },
           duration: const Duration(seconds: 5),
           child: Container(
-            padding: const EdgeInsets.only(top: 50),
+            padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 50)),
             height: constraints.maxHeight,
             alignment: Alignment.center,
             child: Column(
@@ -43,8 +44,8 @@ class _MySplashScreenState extends State<MySplashScreen> {
                 Column(
                   children: [
                     Container(
-                      width: 150,
-                      height: 150,
+                      width: AppSizes.responsiveValue(context, 150),
+                      height: AppSizes.responsiveValue(context, 150),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: const DecorationImage(
@@ -52,14 +53,14 @@ class _MySplashScreenState extends State<MySplashScreen> {
                               fit: BoxFit.contain)),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 8),),
                       child: SizedBox(
                           child: RichText(
                               text: TextSpan(children: [
                         TextSpan(
                           text: "Sales",
                           style: GoogleFonts.roboto(
-                            fontSize: 28,
+                            fontSize: AppSizes.responsiveValue(context, 28),
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff2fc0f2),
                           ),
@@ -67,7 +68,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                         TextSpan(
                           text: "Pulse",
                           style: GoogleFonts.roboto(
-                            fontSize: 28,
+                            fontSize: AppSizes.responsiveValue(context, 28),
                             fontWeight: FontWeight.w600,
                             color: const Color.fromARGB(255, 255, 123, 0),
                           ),
@@ -78,7 +79,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                       child: Text(
                         "Intelligent manager",
                         style: GoogleFonts.roboto(
-                            fontSize: 14,
+                            fontSize: AppSizes.responsiveValue(context, 14),
                             fontWeight: FontWeight.w500,
                             color: const Color(0xff97e4ff)),
                       ),

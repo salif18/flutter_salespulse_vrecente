@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:salespulse/utils/app_size.dart';
 import 'package:salespulse/views/qrcode/genered_qr.dart';
 
 class MobileScannerView extends StatefulWidget {
@@ -74,7 +75,7 @@ class _MobileScannerViewState extends State<MobileScannerView> {
           Expanded(
             flex: 1,
             child: Container(
-              padding: const EdgeInsets.all(5.0),
+              padding:  EdgeInsets.all( AppSizes.responsiveValue(context, 5),),
               color: const Color(0xff001c30), // Même couleur de fond que le reste
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -90,15 +91,15 @@ class _MobileScannerViewState extends State<MobileScannerView> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(width: 10),
+                 SizedBox(width:  AppSizes.responsiveValue(context, 10),),
                   TextButton(
                     onPressed: () {
                       // Action ou navigation vers une autre page
                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const GeneredQRCode()));
                     },
                     style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 12.0),
+                      padding: EdgeInsets.symmetric(
+                          horizontal:  AppSizes.responsiveValue(context, 16), vertical:  AppSizes.responsiveValue(context, 12),),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0)),
                       side: const BorderSide(color: Colors.orange, width: 2.0),

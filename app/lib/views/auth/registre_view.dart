@@ -73,12 +73,14 @@ class _RegistreViewState extends State<RegistreView> {
           provider.loginButton(body['token'], body["userId"].toString(),
               body["userName"], body["entreprise"],body["userNumber"]);
 
-          Navigator.pushReplacement(
+          Navigator.push(
               // ignore: use_build_context_synchronously
               context, MaterialPageRoute(builder: (context) => const Routes()));
         } else {
           // ignore: use_build_context_synchronously
           api.showSnackBarErrorPersonalized(context, body["message"]);
+          // ignore: use_build_context_synchronously
+          Navigator.pop(context);
         }
       } catch (e) {
         if (!mounted) return; // Vérification avant l'utilisation de Navigator

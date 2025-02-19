@@ -59,10 +59,11 @@ class _LoginViewState extends State<LoginView> {
         if (response.statusCode == 200) {
           providerAuth.loginButton(body['token'], body["userId"].toString(), body["userName"], body["entreprise"], body["userNumber"]);
           // ignore: use_build_context_synchronously
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Routes()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const Routes()));
         } else {
           // ignore: use_build_context_synchronously
           api.showSnackBarErrorPersonalized(context, body["message"]);
+          Navigator.pop(context);
         }
       } catch (e) {
         // ignore: use_build_context_synchronously

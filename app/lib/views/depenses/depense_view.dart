@@ -239,7 +239,7 @@ class _DepensesViewState extends State<DepensesView> {
               stream: _streamController.stream,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return SliverFillRemaining(child: const Center(child: CircularProgressIndicator()));
+                  return SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
                 } else if (snapshot.hasError) {
                   return Center(
                       child: Container(
@@ -274,7 +274,7 @@ class _DepensesViewState extends State<DepensesView> {
                     ),
                   ));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return SliverFillRemaining(child: const Text("Aucun produit disponible."));
+                  return SliverFillRemaining(child: Text("Aucun produit disponible."));
                 } else {
                   final List<DepensesModel> depenses = snapshot.data!;
                   // Filtrer les articles par la date sélectionnée

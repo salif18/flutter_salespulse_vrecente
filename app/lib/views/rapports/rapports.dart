@@ -223,7 +223,7 @@ class _RapportViewState extends State<RapportView> {
               stream: _streamController.stream,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return SliverFillRemaining(child: const Center(child: CircularProgressIndicator()));
+                  return const SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
                 } else if (snapshot.hasError) {
                   return SliverFillRemaining(
                     child: Center(
@@ -260,7 +260,7 @@ class _RapportViewState extends State<RapportView> {
                     )),
                   );
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Text("Aucun produit disponible.");
+                  return const SliverFillRemaining(child: Text("Aucun produit disponible."));
                 } else {
                   final List<VentesModel> articles = snapshot.data!;
             
@@ -555,6 +555,7 @@ class _RapportViewState extends State<RapportView> {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
@@ -578,6 +579,7 @@ class _RapportViewState extends State<RapportView> {
                     ],
                   ),
                   Row(
+                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
                         width: constraints.maxWidth * 0.40,
@@ -599,6 +601,7 @@ class _RapportViewState extends State<RapportView> {
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
                         width: constraints.maxWidth * 0.40,

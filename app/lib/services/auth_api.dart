@@ -85,8 +85,8 @@ class ServicesAuth {
   void showSnackBarSuccessPersonalized(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message,
-          style: GoogleFonts.roboto(fontSize: MediaQuery.of(context).size.width *0.4, fontWeight: FontWeight.w400)),
-      backgroundColor: const Color.fromARGB(255, 11, 26, 73),
+          style: GoogleFonts.roboto(fontSize: MediaQuery.of(context).size.width *0.04, fontWeight: FontWeight.w400)),
+      backgroundColor: Colors.deepOrange,
       duration: const Duration(seconds: 5),
      
     ));
@@ -98,7 +98,7 @@ class ServicesAuth {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message,
           style: GoogleFonts.roboto(fontSize:MediaQuery.of(context).size.width *0.04,fontWeight: FontWeight.w400)),
-      backgroundColor: const Color.fromARGB(255, 34, 27, 51),
+      backgroundColor: Colors.deepOrange,
       duration: const Duration(seconds: 5),
      
     ));

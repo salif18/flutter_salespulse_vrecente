@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -128,25 +129,25 @@ class _VenteViewState extends State<VenteView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight:  AppSizes.responsiveValue(context, 100),
+              expandedHeight:  min(AppSizes.responsiveValue(context, 100.0),80),
               pinned: true,
               floating: true,
               leading: IconButton(
                   onPressed: () {
                     drawerKey.currentState!.openDrawer();
                   },
-                  icon: const Icon(Icons.sort,
-                      size: AppSizes.iconHyperLarge, color: Color.fromARGB(255, 255, 136, 0),)),
+                  icon: Icon(Icons.sort,
+                      size: min(AppSizes.responsiveValue(context, 24.0),38), color: Color.fromARGB(255, 255, 136, 0),)),
               flexibleSpace: FlexibleSpaceBar(
                 title: Text("Ventes",
                     style: GoogleFonts.roboto(
-                        fontSize: AppSizes.fontLarge, color: Colors.white)),
+                        fontSize: min(AppSizes.responsiveValue(context, 16.0),24), color: Colors.white)),
               ),
             ),
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height:  AppSizes.responsiveValue(context, 150),
+                height:  min(AppSizes.responsiveValue(context, 120.0),100),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -159,11 +160,12 @@ class _VenteViewState extends State<VenteView> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
+                        maximumSize: Size(min(AppSizes.responsiveValue(context, 200.0),250), min(AppSizes.responsiveValue(context, 40.0),60),)
                       ),
                       label: Text(
                         "Les plus achetés",
                         style: GoogleFonts.roboto(
-                            fontSize: AppSizes.fontMedium, color: Colors.white),
+                            fontSize: min(AppSizes.responsiveValue(context, 14.0),20), color: Colors.white),
                       ),
                       icon: const Icon(Icons.workspace_premium,
                           color: Color.fromARGB(255, 255, 255, 255), size: 30),
@@ -240,13 +242,13 @@ class _VenteViewState extends State<VenteView> {
                                 child: Container(
                                   color: Colors.orange,
                                   constraints: BoxConstraints(
-                                    maxWidth: MediaQuery.of(context).size.width,
+                                    // maxWidth: MediaQuery.of(context).size.width,
                                   ),
-                                  padding: EdgeInsets.all( AppSizes.responsiveValue(context, 5)),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -258,11 +260,11 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all( AppSizes.responsiveValue(context, 5)),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -274,11 +276,11 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                   child: Text(
                                     "Prix de vente",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -290,11 +292,11 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                  padding: EdgeInsets.all(min(AppSizes.responsiveValue(context,5),5),),
                                   child: Text(
                                     "Quantités",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -306,11 +308,11 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                  padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Date",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -322,11 +324,11 @@ class _VenteViewState extends State<VenteView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                  padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                   child: Text(
                                     "Actions",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -340,69 +342,69 @@ class _VenteViewState extends State<VenteView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       article.nom,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                    padding:EdgeInsets.all(min(AppSizes.responsiveValue(context,5),5),),
                                     child: Text(
                                       article.categories,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       "${article.prixVente} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize:min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       article.qty.toString(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       DateFormat("dd MMM yyyy")
                                           .format(article.dateVente),
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Row(
                                       children: [
                                         Text(
                                           "Annuler",
                                           style: GoogleFonts.roboto(
-                                              fontSize: AppSizes.fontSmall,
+                                              fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                               color: Colors.blue),
                                         ),
                                         IconButton(

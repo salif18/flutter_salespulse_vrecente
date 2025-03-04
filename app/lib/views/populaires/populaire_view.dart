@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -98,7 +99,7 @@ class _PopulaireViewState extends State<PopulaireView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: AppSizes.responsiveValue(context, 100),
+              expandedHeight: min(AppSizes.responsiveValue(context, 100.0),80),
               pinned: true,
               floating: true,
               centerTitle: true,
@@ -106,13 +107,13 @@ class _PopulaireViewState extends State<PopulaireView> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(Icons.arrow_back_ios_new,
-                      size: AppSizes.iconHyperLarge, color: Colors.white)),
+                  icon: Icon(Icons.arrow_back_ios_new,
+                      size: min(AppSizes.responsiveValue(context, 24.0),30), color: Colors.white)),
               flexibleSpace: FlexibleSpaceBar(
                 title: Text(
                   "Les plus achetés",
                   style: GoogleFonts.roboto(
-                      fontSize: AppSizes.fontLarge, color: Colors.white),
+                      fontSize: min(AppSizes.responsiveValue(context, 14.0),24), color: Colors.white),
                 ),
               ),
             ),
@@ -163,7 +164,7 @@ class _PopulaireViewState extends State<PopulaireView> {
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Container(
-                        padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                        padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
@@ -173,11 +174,11 @@ class _PopulaireViewState extends State<PopulaireView> {
                           columns: [
                             DataColumn(
                               label: Container(
-                                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                 child: Text(
                                   "Name",
                                   style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
+                                    fontSize: min(AppSizes.responsiveValue(context, 12),24),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -185,11 +186,11 @@ class _PopulaireViewState extends State<PopulaireView> {
                             ),
                             DataColumn(
                               label: Container(
-                                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                 child: Text(
                                   "Categories",
                                   style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
+                                    fontSize: min(AppSizes.responsiveValue(context, 12),24),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -197,11 +198,11 @@ class _PopulaireViewState extends State<PopulaireView> {
                             ),
                             DataColumn(
                               label: Container(
-                                padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                 child: Text(
                                   "Nombre d'achat",
                                   style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
+                                    fontSize: min(AppSizes.responsiveValue(context, 12),24),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -213,33 +214,33 @@ class _PopulaireViewState extends State<PopulaireView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       article.id.nom,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12),24),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       article.id.categories,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12),24),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       article.totalVendu.toString(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12),24),
                                       ),
                                     ),
                                   ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -220,25 +221,18 @@ class _DashboardViewState extends State<DashboardView> {
             slivers: [
               SliverAppBar(
                 backgroundColor: const Color(0xff001c30),
-                expandedHeight: AppSizes.responsiveValue(context, 100.0),
+                toolbarHeight: min(AppSizes.responsiveValue(context, 50.0),100),
                 pinned: true,
                 floating: true,
                 leading: IconButton(onPressed: (){
                   drawerKey.currentState!.openDrawer();
-                }, icon:const Icon(Icons.sort, size: AppSizes.iconHyperLarge,color:Color.fromARGB(255, 255, 136, 0),)),
+                }, icon:Icon(Icons.sort, size: min(AppSizes.responsiveValue(context, 24),38),color:Color.fromARGB(255, 255, 136, 0),)),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text("Tableau de bord",style:GoogleFonts.roboto(fontSize: AppSizes.fontLarge, color:Colors.white)),
+                  title: Text("Tableau de bord",style:GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 16),25), color:Colors.white)),
                 ),
               ),
               SliverToBoxAdapter(
-                child: Container(
-                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
-                    decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
-                    child: _statsWeek(context)),
+                child: _statsWeek(context),
               ),
               SliverToBoxAdapter(child: _statsStock(context)),
               SliverToBoxAdapter(child: _statsCaisse(context)),
@@ -253,10 +247,10 @@ class _DashboardViewState extends State<DashboardView> {
   Widget _statsWeek(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        width: constraints.maxWidth,
-        height: AppSizes.responsiveValue(context, 300.0),
+        // width: constraints.maxWidth,
+        // height: min(AppSizes.responsiveValue(context, 300.0),900),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          // borderRadius: BorderRadius.circular(20),
           // color: const Color(0xff001c30),
           boxShadow: [
             BoxShadow(
@@ -272,31 +266,29 @@ class _DashboardViewState extends State<DashboardView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-                padding: EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 15.0),vertical: AppSizes.responsiveValue(context, 8.0)),
+                padding: EdgeInsets.symmetric(horizontal:min(AppSizes.responsiveValue(context, 15.0),20),vertical: min(AppSizes.responsiveValue(context, 8.0),16)),
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text("Hebdomadaire",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
-                          fontSize: AppSizes.responsiveValue(context, 18),
+                          fontSize: min(AppSizes.responsiveValue(context, 16),30),
                           color: const Color.fromARGB(255, 7, 7, 7))),
                 )),
             Padding(
-              padding: EdgeInsets.only(left: AppSizes.responsiveValue(context, 15.0)),
+              padding: EdgeInsets.only(left: min(AppSizes.responsiveValue(context, 15.0),20)),
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text("$totalHebdo XOF",
                     style: GoogleFonts.roboto(
                         fontWeight: FontWeight.w600,
-                        fontSize: AppSizes.responsiveValue(context, 18.0),
+                        fontSize: min(AppSizes.responsiveValue(context, 16.0),30),
                         color: const Color.fromARGB(255, 10, 10, 10))),
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.all(0),
-                child: BarChartWidget(
-                  data: statsHebdo,
-                ))
+            BarChartWidget(
+              data: statsHebdo,
+            )
           ],
         ),
       );
@@ -309,114 +301,127 @@ class _DashboardViewState extends State<DashboardView> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        width: constraints.maxWidth,
-        margin:  EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
+        // width: constraints.maxWidth,
+        padding:  EdgeInsets.symmetric(horizontal:min(AppSizes.responsiveValue(context, 10.0),20),vertical:min(AppSizes.responsiveValue(context, 10.0),5)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _buildStatContainer(
-              title: "Les plus achetés",
-              icon: Icons.star_rate_rounded,
-              iconColor: Colors.yellow,
-              backgroundColor: const Color.fromARGB(255, 255, 149, 50),
-              textColor: Colors.white,
-              child: Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: populaireVente.length.clamp(0, 5), // max 4 items
-                  itemBuilder: (context, index) {
-                    final stock = populaireVente[index];
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          flex: 1,
-                          child: Container(
-                            width: AppSizes.responsiveValue(context, 100),
-                            alignment: Alignment.centerLeft,
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                stock.id.nom,
-                                style: GoogleFonts.roboto(
-                                    fontSize: constraints.maxWidth*0.025,
-                                    color: Colors.white),
-                              )),
-                          ),
-                        ),
+            Expanded(
+              flex: 1,
+              child: _buildStatContainer(
+                title: "Les plus achetés",
+                icon: Icons.star_rate_rounded,
+                iconColor: Colors.yellow,
+                backgroundColor: const Color.fromARGB(255, 255, 149, 50),
+                textColor: Colors.white,
+                child: Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: populaireVente.length.clamp(0, 5), // max 4 items
+                    itemBuilder: (context, index) {
+                      final stock = populaireVente[index];
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
                           Flexible(
                             flex: 1,
                             child: Container(
-                              alignment: Alignment.bottomLeft,
+                              width: AppSizes.responsiveValue(context, 100),
+                              alignment: Alignment.centerLeft,
                               child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                               stock.id.categories,
-                                style: GoogleFonts.roboto(
-                                    fontSize: constraints.maxWidth*0.025,
-                                    color: Colors.white),
-                              )),
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  stock.id.nom,
+                                  style: GoogleFonts.roboto(
+                                      fontSize: min(AppSizes.responsiveValue(context, 13.0),20),
+                                      color: Colors.white),
+                                )),
                             ),
                           ),
-                      Flexible(
-                        flex:1,
-                        child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              stock.totalVendu.toString(),
-                              style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium,
-                                  color:const Color.fromARGB(255, 255, 238, 0)),
-                            )),
-                      ),
-          ]);
-                  },
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                alignment: Alignment.bottomLeft,
+                                child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                 stock.id.categories,
+                                  style: GoogleFonts.roboto(
+                                      fontSize: min(AppSizes.responsiveValue(context, 13.0),20),
+                                      color: Colors.white),
+                                )),
+                              ),
+                            ),
+                        Flexible(
+                          flex:1,
+                          child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                stock.totalVendu.toString(),
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
+                                    color:const Color.fromARGB(255, 255, 238, 0)),
+                              )),
+                        ),
+                        ]);
+                    },
+                  ),
                 ),
               ),
             ),
-            _buildStatContainer(
-              title: "Manque de stock",
-              icon: Icons.hourglass_empty_rounded,
-              iconColor: const Color.fromARGB(255, 236, 40, 40),
-              backgroundColor: const Color(0xfff0f1f5),
-              textColor: const Color.fromARGB(255, 39, 39, 39),
-              child: filterStocks.isEmpty
-                  ? Center(
-                      child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text("Aucun stock manquant",
-                          style: GoogleFonts.roboto(
-                              fontSize: AppSizes.fontMedium)),
-                    ))
-                  : Expanded(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount:
-                            filterStocks.length.clamp(0, 5), // max 4 items
-                        itemBuilder: (context, index) {
-                          final stock = filterStocks[index];
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(stock.nom,
-                                    style: GoogleFonts.roboto(
-                                        fontSize: constraints.maxWidth*0.025)),
-                              ),
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(stock.categories,
-                                    style: GoogleFonts.roboto(
-                                        fontSize: constraints.maxWidth*0.025,
-                                        color:const Color.fromARGB(255, 122, 0, 204)
-                                      )),
-                              ),
-                            ],
-                          );
-                        },
+            Expanded(
+              flex: 1,
+              child: _buildStatContainer(
+                title: "Manque de stock",
+                icon: Icons.hourglass_empty_rounded,
+                iconColor: const Color.fromARGB(255, 236, 40, 40),
+                backgroundColor: const Color(0xfff0f1f5),
+                textColor: const Color.fromARGB(255, 39, 39, 39),
+                child: filterStocks.isEmpty
+                    ? Center(
+                        child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text("Aucun stock manquant",
+                            style: GoogleFonts.roboto(
+                                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
+                      ))
+                    : Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount:
+                              filterStocks.length.clamp(0, 5), // max 4 items
+                          itemBuilder: (context, index) {
+                            final stock = filterStocks[index];
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              
+                              children: [
+                                Flexible(
+                                  flex:1,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(stock.nom,
+                                        style: GoogleFonts.roboto(
+                                            fontSize: min(AppSizes.responsiveValue(context, 12.0),20),)),
+                                  ),
+                                ),
+                                Flexible(
+                                  flex: 1,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(stock.categories.toLowerCase(),
+                                        style: GoogleFonts.roboto(
+                                            fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
+                                            color:const Color.fromARGB(255, 122, 0, 204)
+                                          )),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
-                    ),
+              ),
             ),
           ],
         ),
@@ -436,8 +441,8 @@ class _DashboardViewState extends State<DashboardView> {
       flex: 1,
       child: Container(
         // width: 180,
-        height: AppSizes.responsiveValue(context, 200.0),
-        margin:  EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+        height: min(AppSizes.responsiveValue(context, 200.0),300),
+        margin:  EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 5),vertical: AppSizes.responsiveValue(context, 5)),
         padding: EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 5.0),vertical: AppSizes.responsiveValue(context, 10.0)),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -456,18 +461,18 @@ class _DashboardViewState extends State<DashboardView> {
           children: [
             Row(
               children: [
-                Icon(icon, size: AppSizes.iconLarge, color: iconColor),
+                Icon(icon, size: min(AppSizes.responsiveValue(context, 24.0),30), color: iconColor),
                 SizedBox(width: AppSizes.responsiveValue(context, 10.0)),
                 Text(
                   title,
                   style: GoogleFonts.roboto(
-                    fontSize: AppSizes.fontMedium,
+                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                     color: textColor,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: AppSizes.responsiveValue(context, 25)),
+            SizedBox(height: AppSizes.responsiveValue(context, 10)),
             if (child != null) child,
           ],
         ),
@@ -479,7 +484,7 @@ class _DashboardViewState extends State<DashboardView> {
     int revenu = beneficeTotal - depenseTotal;
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
+        margin: EdgeInsets.symmetric(horizontal:AppSizes.responsiveValue(context, 10.0),vertical: AppSizes.responsiveValue(context, 2)),
         padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
         width: constraints.maxWidth,
         decoration: BoxDecoration(
@@ -495,7 +500,7 @@ class _DashboardViewState extends State<DashboardView> {
             ),
           ],
         ),
-        height: AppSizes.responsiveValue(context, 100),
+        height: min(AppSizes.responsiveValue(context, 100.0),200),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -504,8 +509,8 @@ class _DashboardViewState extends State<DashboardView> {
               children: [
                 Padding(
                     padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                    child: const Icon(Icons.line_axis_rounded,
-                        size: AppSizes.iconLarge,
+                    child: Icon(Icons.line_axis_rounded,
+                        size: min(AppSizes.responsiveValue(context, 24.0),30),
                         color: Color.fromARGB(255, 20, 151, 3))),
                 Padding(
                     padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
@@ -514,32 +519,34 @@ class _DashboardViewState extends State<DashboardView> {
                       child: Text(
                         "Etat de caisse",
                         style:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                            GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
                       ),
                     ))
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 2.0)),
               child: Row(
                 children: [
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
                       "$revenu XOF",
-                      style: GoogleFonts.roboto(fontSize: AppSizes.fontMedium,fontWeight:FontWeight.bold , color: revenu < 0? Colors.red : Colors.black),
+                      style: GoogleFonts.roboto(
+                        fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
+                        fontWeight:FontWeight.bold , color: revenu < 0? Colors.red : Colors.black),
                     ),
                   ),
                   SizedBox(width: AppSizes.responsiveValue(context, 25)),
                   revenu > 0
-                      ? const Icon(
+                      ? Icon(
                           Icons.arrow_upward_rounded,
-                          size: AppSizes.fontLarge,
+                          size: min(AppSizes.responsiveValue(context, 24.0),30),
                           color: Colors.blue,
                         )
-                      : const Icon(
+                      : Icon(
                           Icons.arrow_downward_outlined,
-                          size: AppSizes.fontLarge,
+                          size:min(AppSizes.responsiveValue(context, 24.0),30),
                           color: Colors.red,
                         )
                 ],
@@ -556,7 +563,7 @@ class _DashboardViewState extends State<DashboardView> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
+        margin: EdgeInsets.symmetric(horizontal:min(AppSizes.responsiveValue(context, 8.0),16),vertical: min(AppSizes.responsiveValue(context, 8),8)),
         width: constraints.maxWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -579,7 +586,7 @@ class _DashboardViewState extends State<DashboardView> {
                     ),
                   ],
                 ),
-                height: AppSizes.responsiveValue(context, 100.0),
+                height: min(AppSizes.responsiveValue(context, 100.0),200),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -588,8 +595,8 @@ class _DashboardViewState extends State<DashboardView> {
                       children: [
                         Padding(
                             padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                            child: const Icon(Icons.monetization_on,
-                                size: AppSizes.iconLarge,
+                            child: Icon(Icons.monetization_on,
+                                size: min(AppSizes.responsiveValue(context, 24.0),30),
                                 color: Color.fromARGB(255, 255, 230, 1))),
                         Padding(
                             padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
@@ -598,20 +605,20 @@ class _DashboardViewState extends State<DashboardView> {
                               child: Text(
                                 "Prix d'achat",
                                 style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                     color: Colors.white),
                               ),
                             ))
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5)),
+                      padding: EdgeInsets.symmetric(horizontal:  AppSizes.responsiveValue(context, 10.0)),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           "$prixGlobalAchat XOF",
                           style: GoogleFonts.roboto(
-                              fontSize: AppSizes.fontMedium,
+                              fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                               color: Colors.white),
                         ),
                       ),
@@ -639,7 +646,7 @@ class _DashboardViewState extends State<DashboardView> {
                   ],
                 ),
                 width: AppSizes.responsiveValue(context, 180.0),
-                height: AppSizes.responsiveValue(context, 100.0),
+                height: min(AppSizes.responsiveValue(context, 100.0),200),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -648,31 +655,31 @@ class _DashboardViewState extends State<DashboardView> {
                       children: [
                         Padding(
                             padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                            child:const Icon(
+                            child:Icon(
                               Icons.attach_money_outlined,
-                              size: AppSizes.iconLarge,
+                              size: min(AppSizes.responsiveValue(context, 24.0),30),
                               color: Color.fromARGB(255, 16, 230, 23),
                             )),
                         Padding(
-                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 2.0)),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: Text(
                                 "Prix de vente",
                                 style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium),
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
                               ),
                             ))
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                      padding: EdgeInsets.symmetric(horizontal:  AppSizes.responsiveValue(context, 10.0)),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           "$venteTotal XOF",
                           style:
-                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                              GoogleFonts.roboto(fontSize:min(AppSizes.responsiveValue(context, 14.0),20),),
                         ),
                       ),
                     )
@@ -689,70 +696,73 @@ class _DashboardViewState extends State<DashboardView> {
   Widget _statsCaisse2(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
-        width: constraints.maxWidth,
+        margin: EdgeInsets.symmetric(horizontal:min(AppSizes.responsiveValue(context, 8.0),16)),
+        // width: constraints.maxWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              margin:EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-              padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
-              decoration: BoxDecoration(
-                color: const Color(0xff2f80ed),
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color.fromARGB(255, 36, 34, 34)
-                        .withOpacity(0.2), // Couleur de l'ombre
-                    spreadRadius: 2, // Taille de la diffusion de l'ombre
-                    blurRadius: 8, // Flou de l'ombre
-                    offset: const Offset(0, 4), // Décalage de l'ombre (x,y)
-                  ),
-                ],
-              ),
-              width: AppSizes.responsiveValue(context, 180.0),
-              height: AppSizes.responsiveValue(context, 100.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                          child: const Icon(
-                            Icons.monetization_on,
-                            size: AppSizes.iconLarge,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          )),
-                      Padding(
-                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            child: Text(
-                              "Benefices",
-                              style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium,
-                                  color: Colors.white),
-                            ),
-                          ))
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        "$beneficeTotal XOF",
-                        style: GoogleFonts.roboto(
-                            fontSize: AppSizes.fontMedium, color: Colors.white),
-                      ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin:EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10.0)),
+                decoration: BoxDecoration(
+                  color: const Color(0xff2f80ed),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(255, 36, 34, 34)
+                          .withOpacity(0.2), // Couleur de l'ombre
+                      spreadRadius: 2, // Taille de la diffusion de l'ombre
+                      blurRadius: 8, // Flou de l'ombre
+                      offset: const Offset(0, 4), // Décalage de l'ombre (x,y)
                     ),
-                  )
-                ],
+                  ],
+                ),
+                // width: AppSizes.responsiveValue(context, 180.0),
+                height: min(AppSizes.responsiveValue(context, 100.0),200),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                            child: Icon(
+                              Icons.monetization_on,
+                              size: min(AppSizes.responsiveValue(context, 24.0),30),
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            )),
+                        Padding(
+                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 2.0)),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                "Benefices",
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
+                                    color: Colors.white),
+                              ),
+                            ))
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 2.0)),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          "$beneficeTotal XOF",
+                          style: GoogleFonts.roboto(
+                              fontSize: min(AppSizes.responsiveValue(context, 14.0),20), color: Colors.white),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            Flexible(
+            Expanded(
               flex: 1,
               child: Container(
                 margin: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
@@ -770,7 +780,7 @@ class _DashboardViewState extends State<DashboardView> {
                     ),
                   ],
                 ),
-                height: AppSizes.responsiveValue(context, 100.0),
+                height: min(AppSizes.responsiveValue(context, 100.0),200),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -779,8 +789,8 @@ class _DashboardViewState extends State<DashboardView> {
                       children: [
                         Padding(
                             padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-                            child:const Icon(Icons.monetization_on,
-                                size: AppSizes.iconLarge,
+                            child:Icon(Icons.monetization_on,
+                                size: min(AppSizes.responsiveValue(context, 24.0),30),
                                 color: Color.fromARGB(255, 255, 17, 0))),
                         Padding(
                             padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
@@ -789,20 +799,20 @@ class _DashboardViewState extends State<DashboardView> {
                               child: Text(
                                 "Depenses",
                                 style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                     color: Colors.white),
                               ),
                             ))
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
+                      padding: EdgeInsets.all(AppSizes.responsiveValue(context, .02)),
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
                         child: Text(
                           "$depenseTotal XOF",
                           style: GoogleFonts.roboto(
-                              fontSize: AppSizes.fontMedium,
+                              fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                               color: Colors.white),
                         ),
                       ),
@@ -820,9 +830,9 @@ class _DashboardViewState extends State<DashboardView> {
   Widget _statsAnnuel(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return Container(
-        margin: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0)),
-        width: constraints.maxWidth,
-        height: AppSizes.responsiveValue(context, 270),
+        margin: EdgeInsets.symmetric(horizontal:min(AppSizes.responsiveValue(context, 5.0),10),vertical:  min(AppSizes.responsiveValue(context, 10.0),10)),
+        // width: constraints.maxWidth,
+        // height: min(AppSizes.responsiveValue(context, 270.0),900),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: const Color.fromARGB(255, 223, 223, 223),
@@ -837,7 +847,7 @@ class _DashboardViewState extends State<DashboardView> {
                   child: Text("Annuel",
                       style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
-                          fontSize: AppSizes.responsiveValue(context, 18.0),
+                          fontSize: min(AppSizes.responsiveValue(context, 16),30),
                           color: const Color.fromARGB(255, 12, 12, 12))),
                 )),
             // Padding(

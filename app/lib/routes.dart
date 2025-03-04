@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salespulse/providers/auth_provider.dart';
@@ -52,7 +54,7 @@ class _RoutesState extends State<Routes> {
 
   Widget _buildBottomNavigation() {
     return SizedBox(
-      height: AppSizes.responsiveValue(context, 80),
+      height: min(AppSizes.responsiveValue(context, 80),110),
       child: CurvedNavigationBar(
         index: _currentIndex,
         onTap: (index) {
@@ -65,13 +67,13 @@ class _RoutesState extends State<Routes> {
         buttonBackgroundColor: const Color.fromARGB( 255, 255, 136, 0), //const Color.fromARGB(255, 126, 61, 248),
         backgroundColor: Colors.transparent,
         animationCurve: Curves.easeInOut,
-        animationDuration: const Duration(milliseconds: 600),
-        items: const [
-          Icon(Icons.stacked_bar_chart_rounded , size:AppSizes.iconLarge, color: Colors.white),
-          Icon(Icons.view_in_ar_outlined , size:AppSizes.iconLarge, color: Colors.white),
-          Icon(Icons.clean_hands_rounded , size:AppSizes.iconLarge, color: Colors.white),
-          Icon(Icons.library_books_sharp , size:AppSizes.iconLarge, color: Colors.white),
-          Icon(Icons.balance_sharp , size:AppSizes.iconLarge, color: Colors.white),
+        animationDuration: const Duration(milliseconds: 600),     
+        items: [
+          Icon(Icons.stacked_bar_chart_rounded , size:min(AppSizes.responsiveValue(context, 22),38), color: Colors.white),
+          Icon(Icons.view_in_ar_outlined , size:min(AppSizes.responsiveValue(context, 22),38), color: Colors.white),
+          Icon(Icons.clean_hands_rounded , size:min(AppSizes.responsiveValue(context, 22),38), color: Colors.white),
+          Icon(Icons.library_books_sharp , size:min(AppSizes.responsiveValue(context, 22),38), color: Colors.white),
+          Icon(Icons.balance_sharp , size:min(AppSizes.responsiveValue(context, 22),38), color: Colors.white),
         ],
       ),
     );

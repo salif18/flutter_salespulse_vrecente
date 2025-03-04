@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: AppSizes.responsiveValue(context, 400),
+                  height:  min(AppSizes.responsiveValue(context, 400),400),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/logos/logo2.jpg"), 
@@ -97,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
                 Container(
                   height: AppSizes.responsiveValue(context, 400),
                   width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 50), left: AppSizes.responsiveValue(context, 10), right: AppSizes.responsiveValue(context, 10)),
+                  padding: EdgeInsets.only(top: min(AppSizes.responsiveValue(context, 50),50), left: min(AppSizes.responsiveValue(context, 10),10), right: min(AppSizes.responsiveValue(context, 10),10)),
                   decoration: const BoxDecoration(
                     color: Color(0xff001c30),
                     borderRadius: BorderRadius.only(
@@ -122,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               hintText: "Numéro ou e-mail",
-                              hintStyle: GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                              hintStyle: GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 12),20)),
                               filled: true,
                               fillColor: const Color(0xfff0fcf3),
                               prefixIcon: const Icon(Icons.person_2_outlined, size: AppSizes.iconLarge),
@@ -149,7 +150,7 @@ class _LoginViewState extends State<LoginView> {
                             obscureText: isVisibility,
                             decoration: InputDecoration(
                               hintText: "Mot de passe",
-                              hintStyle: GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
+                              hintStyle: GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 12),20)),
                               filled: true,
                               fillColor: const Color(0xfff0fcf3),
                               prefixIcon: const Icon(Icons.lock_outline, size: AppSizes.iconLarge),
@@ -183,7 +184,7 @@ class _LoginViewState extends State<LoginView> {
                                 child: Text(
                                   "Mot de passe oublié ?",
                                   style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.fontMedium,
+                                    fontSize: min(AppSizes.responsiveValue(context, 12),20),
                                     color: Colors.blue[400],
                                   ),
                                 ),
@@ -195,7 +196,7 @@ class _LoginViewState extends State<LoginView> {
                           padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              minimumSize: Size(AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40)),
+                              minimumSize: Size(AppSizes.responsiveValue(context, 400), min(AppSizes.responsiveValue(context, 40),60)),
                               backgroundColor: const Color.fromARGB(255, 255, 123, 0),
                             ),
                             onPressed: () {
@@ -204,7 +205,7 @@ class _LoginViewState extends State<LoginView> {
                             child: Text(
                               "Se connecter",
                               style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall,
+                                fontSize: min(AppSizes.responsiveValue(context, 12),20),
                                 color: Colors.white,
                               ),
                             ),
@@ -216,7 +217,7 @@ class _LoginViewState extends State<LoginView> {
                             Text(
                               "Vous n'avez pas de compte ?",
                               style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium,
+                                fontSize: min(AppSizes.responsiveValue(context, 12),20),
                                 color: Colors.white,
                               ),
                             ),
@@ -230,7 +231,7 @@ class _LoginViewState extends State<LoginView> {
                               child: Text(
                                 "Créer",
                                 style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium,
+                                  fontSize:min(AppSizes.responsiveValue(context, 12),20),
                                   fontWeight: FontWeight.bold,
                                   color: const Color.fromARGB(255, 255, 123, 0),
                                 ),

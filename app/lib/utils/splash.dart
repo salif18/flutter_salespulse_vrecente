@@ -44,8 +44,8 @@ class _MySplashScreenState extends State<MySplashScreen> {
                 Column(
                   children: [
                     Container(
-                      width: AppSizes.responsiveValue(context, 150),
-                      height: AppSizes.responsiveValue(context, 150),
+                      width: AppSizes.responsiveValue(context, 100),
+                      height: AppSizes.responsiveValue(context, 100),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           image: const DecorationImage(
@@ -60,7 +60,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                         TextSpan(
                           text: "Sales",
                           style: GoogleFonts.roboto(
-                            fontSize: AppSizes.responsiveValue(context, 28),
+                            fontSize: AppSizes.responsiveValue(context, 14),
                             fontWeight: FontWeight.w600,
                             color: const Color(0xff2fc0f2),
                           ),
@@ -68,7 +68,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                         TextSpan(
                           text: "Pulse",
                           style: GoogleFonts.roboto(
-                            fontSize: AppSizes.responsiveValue(context, 28),
+                            fontSize: AppSizes.responsiveValue(context, 14),
                             fontWeight: FontWeight.w600,
                             color: const Color.fromARGB(255, 255, 123, 0),
                           ),
@@ -79,7 +79,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
                       child: Text(
                         "Intelligent manager",
                         style: GoogleFonts.roboto(
-                            fontSize: AppSizes.responsiveValue(context, 14),
+                            fontSize: AppSizes.responsiveValue(context, 12),
                             fontWeight: FontWeight.w500,
                             color: const Color(0xff97e4ff)),
                       ),

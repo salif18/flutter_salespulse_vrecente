@@ -20,13 +20,13 @@ class LineChartWidget extends StatelessWidget {
         .toList();
 
     return Padding(
-      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0),),
+      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Graphique des ventes
           AspectRatio(
-            aspectRatio: 2,
+            aspectRatio: 3,
             child: Container(
               padding:  EdgeInsets.only(right: AppSizes.responsiveValue(context, 25.0),),
               decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -157,18 +158,18 @@ class _CategoriesViewState extends State<CategoriesView> {
       body: CustomScrollView(slivers: [
         SliverAppBar(
           backgroundColor: const Color(0xff001c30),
-          expandedHeight: AppSizes.responsiveValue(context, 80.0),
+          toolbarHeight: min(AppSizes.responsiveValue(context, 80.0),80),
           pinned: true,
           floating: true,
           leading: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.arrow_back_ios_new_outlined,
-                  color: Colors.white, size: AppSizes.iconLarge)),
+              icon: Icon(Icons.arrow_back_ios_new_outlined,
+                  color: Colors.white, size: min(AppSizes.responsiveValue(context, 24.0),30),)),
           flexibleSpace: FlexibleSpaceBar(
             title: Text(
               "Liste des catégories",
               style: GoogleFonts.roboto(
-                  fontSize: AppSizes.fontMedium, color: Colors.white),
+                  fontSize: min(AppSizes.responsiveValue(context, 15.0),24), color: Colors.white),
             ),
           ),
         ),
@@ -255,7 +256,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                           title: Text(
                             categorie.name,
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
                           ),
                         ),
                       ),
@@ -273,9 +274,9 @@ class _CategoriesViewState extends State<CategoriesView> {
         onPressed: () {
           _addCateShow(context);
         },
-        child: const Icon(
+        child: Icon(
           Icons.add,
-          size: AppSizes.iconLarge,
+          size: min(AppSizes.responsiveValue(context, 24.0),30),
           color: Colors.white,
         ),
       ),
@@ -292,7 +293,7 @@ class _CategoriesViewState extends State<CategoriesView> {
             child: Text(
               "Ajouter categories",
               style: GoogleFonts.roboto(
-                fontSize: AppSizes.fontLarge,
+                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -315,10 +316,10 @@ class _CategoriesViewState extends State<CategoriesView> {
                       decoration: InputDecoration(
                         hintText: "Nom de la categorie",
                         hintStyle:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                        prefixIcon: const Icon(
+                            GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                        prefixIcon: Icon(
                           Icons.category_rounded,
-                          size: AppSizes.iconMedium,
+                          size: min(AppSizes.responsiveValue(context, 14.0),20),
                           color: Colors.purpleAccent,
                         ),
                         isDense: true, // Réduit la hauteur
@@ -333,12 +334,14 @@ class _CategoriesViewState extends State<CategoriesView> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:const Color.fromARGB(255, 255, 136, 0),
-                        minimumSize: Size(AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40.0)),
+                        minimumSize: Size(
+                          min(AppSizes.responsiveValue(context, 400.0),420),
+                         min(AppSizes.responsiveValue(context, 40.0),60),),
                       ),
                       child: Text(
                         "Enregistrer",
                         style: GoogleFonts.roboto(
-                          fontSize: AppSizes.fontSmall,
+                          fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
                         ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -101,7 +102,7 @@ class _RegistreViewState extends State<RegistreView> {
           SliverList(
             delegate: SliverChildListDelegate([
               Container(
-                height: AppSizes.responsiveValue(context, 350),
+                height:  min(AppSizes.responsiveValue(context, 350),400),
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -116,7 +117,7 @@ class _RegistreViewState extends State<RegistreView> {
             child: Container(
               height: AppSizes.responsiveValue(context, 600),
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.only(top: AppSizes.responsiveValue(context, 40), left: AppSizes.responsiveValue(context, 10), right: AppSizes.responsiveValue(context, 10)),
+              padding: EdgeInsets.only(top:  min(AppSizes.responsiveValue(context, 40),80), left: AppSizes.responsiveValue(context, 10), right: AppSizes.responsiveValue(context, 10)),
               decoration: const BoxDecoration(
                 color: Color(0xff001c30),
                 borderRadius: BorderRadius.only(
@@ -135,13 +136,13 @@ class _RegistreViewState extends State<RegistreView> {
                           Text(
                             "Création de compte",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontHyperLarge,
+                                fontSize: min(AppSizes.responsiveValue(context, 16),20),
                                 color: Colors.white),
                           ),
                           Text(
                             "Information personnelle",
                             style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium,
+                                fontSize:  min(AppSizes.responsiveValue(context, 12),20),
                                 color: Colors.white),
                           )
                         ],
@@ -161,7 +162,7 @@ class _RegistreViewState extends State<RegistreView> {
                         decoration: InputDecoration(
                             hintText: "Nom",
                             hintStyle: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize: min(AppSizes.responsiveValue(context, 12),24),),
                             filled: true,
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.person_3_outlined,
@@ -187,7 +188,7 @@ class _RegistreViewState extends State<RegistreView> {
                         decoration: InputDecoration(
                             hintText: "Votre societé",
                             hintStyle: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize: min(AppSizes.responsiveValue(context, 12),24),),
                             filled: true,
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.home_work_outlined,
@@ -213,7 +214,7 @@ class _RegistreViewState extends State<RegistreView> {
                         decoration: InputDecoration(
                             hintText: "Numero",
                             hintStyle: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize:  min(AppSizes.responsiveValue(context, 12),24),),
                             filled: true,
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.phone_android_outlined,
@@ -239,7 +240,7 @@ class _RegistreViewState extends State<RegistreView> {
                         decoration: InputDecoration(
                             hintText: "Email",
                             hintStyle: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize:  min(AppSizes.responsiveValue(context, 12),24),),
                             filled: true,
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.mail_outline,
@@ -267,7 +268,7 @@ class _RegistreViewState extends State<RegistreView> {
                         decoration: InputDecoration(
                             hintText: "Mot de passe",
                             hintStyle: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontMedium),
+                                fontSize:  min(AppSizes.responsiveValue(context, 12),24),),
                             filled: true,
                             fillColor: const Color(0xfff0fcf3),
                             prefixIcon: const Icon(Icons.lock_outline,
@@ -288,12 +289,14 @@ class _RegistreViewState extends State<RegistreView> {
                                 borderSide: BorderSide.none)),
                       ),
                     ),
-                    SizedBox(height: AppSizes.responsiveValue(context, 25)),
+                    SizedBox(height: AppSizes.responsiveValue(context, 10)),
                     Padding(
                       padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            minimumSize: Size(AppSizes.responsiveValue(context, 400), AppSizes.responsiveValue(context, 40)),
+                            minimumSize: Size(
+                               min(AppSizes.responsiveValue(context, 400),800),
+                                min(AppSizes.responsiveValue(context, 40),60),),
                             backgroundColor:
                                 const Color.fromARGB(255, 255, 123, 0),
                           ),
@@ -303,7 +306,7 @@ class _RegistreViewState extends State<RegistreView> {
                           child: Text("Créer compte",
                               style: GoogleFonts.roboto(
                                 color: Colors.white,
-                                  fontSize: AppSizes.fontMedium))),
+                                  fontSize: min(AppSizes.responsiveValue(context, 12),20),))),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -311,7 +314,7 @@ class _RegistreViewState extends State<RegistreView> {
                         Text(
                           "Avez vous un compte?",
                           style: GoogleFonts.roboto(
-                              fontSize: AppSizes.fontSmall,
+                              fontSize:  min(AppSizes.responsiveValue(context, 12),20),
                               color: Colors.white),
                         ),
                         TextButton(
@@ -327,7 +330,7 @@ class _RegistreViewState extends State<RegistreView> {
                               style: GoogleFonts.roboto(
                                 color:const Color.fromARGB(255, 255, 139, 7),
                                 fontWeight: FontWeight.w600,
-                                  fontSize: AppSizes.fontSmall),
+                                  fontSize:  min(AppSizes.responsiveValue(context, 12),20),),
                             ))
                       ],
                     )

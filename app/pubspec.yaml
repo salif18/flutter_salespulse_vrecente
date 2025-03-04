@@ -41,7 +41,7 @@ dependencies:
   flutter_launcher_icons: ^0.14.3
   dio: ^5.7.0
   pin_code_fields: ^8.0.1
-  date_field: ^5.2.1
+  date_field: ^6.0.3+1
   http: ^1.2.2
   shared_preferences: ^2.3.2
   provider: ^6.1.2

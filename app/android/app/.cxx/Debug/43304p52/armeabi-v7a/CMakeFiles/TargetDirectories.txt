@@ -1,0 +1,2 @@
+C:/Users/KONATE/Documents/Devapp/flutter salespulse/app/android/app/.cxx/Debug/43304p52/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/KONATE/Documents/Devapp/flutter salespulse/app/android/app/.cxx/Debug/43304p52/armeabi-v7a/CMakeFiles/rebuild_cache.dir

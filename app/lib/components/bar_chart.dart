@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,9 +30,9 @@ class _BarChartWidgetState extends State<BarChartWidget> {
 
 
     return Padding(
-      padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0)),
+      padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 8.0),16)),
       child: AspectRatio(
-          aspectRatio: 1.8,
+          aspectRatio: 2.6,
           child: Container(
             padding: EdgeInsets.all(AppSizes.responsiveValue(context, 20.0)),
             decoration: BoxDecoration(
@@ -138,49 +140,49 @@ class _BarChartWidgetState extends State<BarChartWidget> {
       case 0:
         text = Text("Lun",
             style: GoogleFonts.roboto(
-                fontSize: AppSizes.responsiveValue(context, 14.0),
+                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 1:
         text = Text("Mar",
             style: GoogleFonts.roboto(
-                fontSize: AppSizes.responsiveValue(context, 14.0),
+                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 2:
         text = Text("Mer",
             style: GoogleFonts.roboto(
-                fontSize: AppSizes.responsiveValue(context, 14.0),
+                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 3:
         text = Text("Jeu",
             style: GoogleFonts.roboto(
-                fontSize: AppSizes.responsiveValue(context, 14.0),
+                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 4:
         text = Text("Ven",
             style: GoogleFonts.roboto(
-                fontSize: AppSizes.responsiveValue(context, 14.0),
+                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 5:
         text = Text("Sam",
             style: GoogleFonts.roboto(
-                fontSize: AppSizes.responsiveValue(context, 14.0),
+                fontSize:min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;
       case 6:
         text = Text("Dim",
             style: GoogleFonts.roboto(
-                fontSize:AppSizes.responsiveValue(context, 14.0),
+                fontSize:min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
                 color: const Color(0xFFD5CEDD)));
         break;

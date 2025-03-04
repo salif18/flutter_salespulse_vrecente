@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:date_field/date_field.dart';
 import 'package:dio/dio.dart';
@@ -155,28 +156,28 @@ class _RapportViewState extends State<RapportView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight:AppSizes.responsiveValue(context, 100),
+              expandedHeight:min(AppSizes.responsiveValue(context, 100.0),80),
               pinned: true,
               floating: true,
               leading: IconButton(
                   onPressed: () {
                     drawerKey.currentState!.openDrawer();
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.sort,
-                    size: AppSizes.iconHyperLarge,
+                    size: min(AppSizes.responsiveValue(context, 24.0),38),
                     color: Color.fromARGB(255, 255, 136, 0),
                   )),
               flexibleSpace: FlexibleSpaceBar(
                 title: Text("Rapports",
                     style: GoogleFonts.roboto(
-                        fontSize: AppSizes.fontLarge, color: Colors.white)),
+                        fontSize: min(AppSizes.responsiveValue(context, 16.0),24), color: Colors.white)),
               ),
             ),
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: AppSizes.responsiveValue(context, 150),
+                height: min(AppSizes.responsiveValue(context, 120.0),100),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -184,12 +185,14 @@ class _RapportViewState extends State<RapportView> {
                       return Container(
                         padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16),),
                         constraints:
-                            BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 280), minHeight: AppSizes.responsiveValue(context, 20),),
+                            BoxConstraints(
+                              maxWidth: min(AppSizes.responsiveValue(context, 250.0),380),
+                               minHeight: min(AppSizes.responsiveValue(context, 20.0),20)),
                         child: DateTimeFormField(
                           decoration: InputDecoration(
                             hintText: 'Choisir pour une date',
                             hintStyle: GoogleFonts.roboto(
-                                fontSize: 14, color: Colors.white),
+                                fontSize: min(AppSizes.responsiveValue(context, 14.0),20), color: Colors.white),
                             fillColor: const Color.fromARGB(255, 255, 136, 0),
                             // Color.fromARGB(255, 82, 119, 175),
                             filled: true,
@@ -301,13 +304,13 @@ class _RapportViewState extends State<RapportView> {
                                 child: Container(
                                   color: Colors.orange,
                                   constraints: BoxConstraints(
-                                    maxWidth: MediaQuery.of(context).size.width,
+                                    // maxWidth: MediaQuery.of(context).size.width,
                                   ),
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),15),),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -319,11 +322,11 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),15),),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -335,11 +338,11 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),15),),
                                   child: Text(
                                     "Prix d'achat",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -351,11 +354,11 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),15),),
                                   child: Text(
                                     "Prix de vente",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -367,11 +370,11 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),15),),
                                   child: Text(
                                     "Quantités",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -383,11 +386,11 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context,5),15),),
                                   child: Text(
                                     "Somme",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -399,11 +402,11 @@ class _RapportViewState extends State<RapportView> {
                               label: Expanded(
                                 child: Container(
                                   color: Colors.orange,
-                                  padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),15),),
                                   child: Text(
                                     "Benefices",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -421,77 +424,77 @@ class _RapportViewState extends State<RapportView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context,5),5),),
                                     child: Text(
                                       article.nom,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context,5),5),),
                                     child: Text(
                                       article.categories,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       "${article.prixAchat.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       "${article.prixVente.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       article.qty.toString(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       "${somme.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5),5),),
                                     child: Text(
                                       "${benefices.toStringAsFixed(2)} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontMedium,
+                                        fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       ),
                                     ),
                                   ),
@@ -511,9 +514,9 @@ class _RapportViewState extends State<RapportView> {
       ),
       bottomNavigationBar: LayoutBuilder(builder: (context, constraints) {
         return Container(
-          width: constraints.maxWidth,
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 10), vertical: AppSizes.responsiveValue(context, 20)),
-          height: AppSizes.responsiveValue(context, 150),
+          // width: constraints.maxWidth,
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 10), vertical: AppSizes.responsiveValue(context, 8)),
+          height: min(AppSizes.responsiveValue(context, 150.0),150),
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 248, 248, 248),
               border: Border.all(
@@ -522,107 +525,127 @@ class _RapportViewState extends State<RapportView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: AppSizes.responsiveValue(context, 100),
+              Expanded(
+                flex: 1,
+                child: SizedBox(
+                  // width: AppSizes.responsiveValue(context, 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          "Rapport du",
+                          style:
+                              GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                        ),
+                      ),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                            selectedDate != null
+                                ? DateFormat("dd MMM yyyy").format(selectedDate!)
+                                : 'general',
+                            style: GoogleFonts.roboto(
+                                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
+                      ),
+                      Expanded(
+                        child: IconButton(
+                          onPressed: () {
+                            _printReceipt(context, filteredArticles);
+                          },
+                          icon: Icon(Icons.print, size:min(AppSizes.responsiveValue(context, 24.0),38),),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                        "Rapport du",
-                        style:
-                            GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            // width: constraints.maxWidth * 0.40,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                "Produit ",
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(nombreTotalDeProduit().toString(),
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
+                          ),
+                        ),
+                      ],
                     ),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(
-                          selectedDate != null
-                              ? DateFormat("dd MMM yyyy").format(selectedDate!)
-                              : 'general',
-                          style: GoogleFonts.roboto(
-                              fontSize: AppSizes.fontMedium)),
+                    Row(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            // width: constraints.maxWidth * 0.40,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                "Total",
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text("${sommeTotal().toString()} XOF",
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
+                          ),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      onPressed: () {
-                        _printReceipt(context, filteredArticles);
-                      },
-                      icon: const Icon(Icons.print, size: AppSizes.iconLarge),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            // width: constraints.maxWidth * 0.40,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                "Benefices",
+                                style: GoogleFonts.roboto(
+                                    fontSize:min(AppSizes.responsiveValue(context, 14.0),20),),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text("${beneficeTotal().toString()} XOF",
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                // mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: constraints.maxWidth * 0.40,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            "Produit ",
-                            style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall),
-                          ),
-                        ),
-                      ),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(nombreTotalDeProduit().toString(),
-                            style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall)),
-                      ),
-                    ],
-                  ),
-                  Row(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: constraints.maxWidth * 0.40,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            "Total",
-                            style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall),
-                          ),
-                        ),
-                      ),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text("${sommeTotal().toString()} XOF",
-                            style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall)),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: constraints.maxWidth * 0.40,
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            "Benefices",
-                            style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall),
-                          ),
-                        ),
-                      ),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text("${beneficeTotal().toString()} XOF",
-                            style: GoogleFonts.roboto(
-                                fontSize: AppSizes.fontSmall)),
-                      ),
-                    ],
-                  ),
-                ],
               ),
             ],
           ),

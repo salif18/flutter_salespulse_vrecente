@@ -35,9 +35,9 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       bottom: BorderSide(width: 2, color: Colors.orange)
                     )
                     ),
-                  child: SizedBox(
-                      width: AppSizes.responsiveValue(context, 80.0),
-                      height: AppSizes.responsiveValue(context, 80.0),
+                  child: Container(
+                      // width: AppSizes.responsiveValue(context, 80.0),
+                      // height: AppSizes.responsiveValue(context, 80.0),
                       child: Center(
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,25 +82,29 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               },
                               title: Row(
                                 children: [
-                                  Container(
-                                   height: AppSizes.responsiveValue(context, 27.0),   
-                                   width: AppSizes.responsiveValue(context, 27.0),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: const Color.fromARGB(255, 10, 165, 226),
+                                  Expanded(
+                                    child: Container(
+                                     height: AppSizes.responsiveValue(context, 27.0),   
+                                     width: AppSizes.responsiveValue(context, 27.0),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: const Color.fromARGB(255, 10, 165, 226),
+                                      ),
+                                      child: const Icon(LineIcons.userEdit,
+                                          size: AppSizes.iconLarge,
+                                          color: Color.fromARGB(255, 255, 255, 255)),
                                     ),
-                                    child: const Icon(LineIcons.userEdit,
-                                        size: AppSizes.iconLarge,
-                                        color: Color.fromARGB(255, 255, 255, 255)),
                                   ),
                                   const SizedBox(width: 20),
-                                  AutoSizeText(
-                                    "Modifier profil",
-                                    minFontSize: 14,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontLarge,
-                                        color: const Color.fromARGB(255, 20, 20, 20)),
+                                  Expanded(
+                                    child: AutoSizeText(
+                                      "Modifier profil",
+                                      minFontSize: 14,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.roboto(
+                                          fontSize: AppSizes.fontLarge,
+                                          color: const Color.fromARGB(255, 20, 20, 20)),
+                                    ),
                                   )
                                 ],
                               ),

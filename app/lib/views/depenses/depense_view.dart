@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
@@ -151,84 +152,93 @@ class _DepensesViewState extends State<DepensesView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: AppSizes.responsiveValue(context, 100),
+              expandedHeight:min(AppSizes.responsiveValue(context, 100.0),80),
               pinned: true,
               floating: true,
               leading: IconButton(
                   onPressed: () {
                     drawerKey.currentState!.openDrawer();
                   },
-                  icon: const Icon(Icons.sort,
-                      size: AppSizes.iconHyperLarge, color: Color.fromARGB(255, 255, 136, 0),)),
+                  icon: Icon(Icons.sort,
+                      size: min(AppSizes.responsiveValue(context, 24.0),38), color: Color.fromARGB(255, 255, 136, 0),)),
               flexibleSpace: FlexibleSpaceBar(
                 title: Text("Dépenses",
                     style: GoogleFonts.roboto(
-                        fontSize: AppSizes.fontLarge, color: Colors.white)),
+                        fontSize: min(AppSizes.responsiveValue(context, 16.0),24), color: Colors.white)),
               ),
             ),
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: AppSizes.responsiveValue(context, 150),
+                height: min(AppSizes.responsiveValue(context, 120.0),120),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            padding: EdgeInsets.all(AppSizes.responsiveValue(context, 10),),
-                            child: Text(
-                              "Total",
-                              style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            )),
-                        Container(
-                            padding: EdgeInsets.only(left: AppSizes.responsiveValue(context, 10),),
-                            child: Text(
-                              "${_totalFilter()} XOF",
-                              style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontSmall,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            )),
-                      ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16),),
-                      constraints:
-                          BoxConstraints(maxWidth: AppSizes.responsiveValue(context, 260), minHeight: AppSizes.responsiveValue(context, 20)),
-                      child: DateTimeFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Choisir pour une date',
-                          hintStyle: GoogleFonts.roboto(
-                              fontSize: 14, color: Colors.white),
-                          fillColor:const Color.fromARGB(255, 255, 136, 0),
-                          // Color.fromARGB(255, 82, 119, 175),
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide.none,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                              padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 10.0),20),),
+                              child: Text(
+                                "Total",
+                                style: GoogleFonts.roboto(
+                                    fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                          Expanded(
+                            child: Container(
+                                padding: EdgeInsets.only(left: min(AppSizes.responsiveValue(context, 10.0),20),),
+                                child: Text(
+                                  "${_totalFilter()} XOF",
+                                  style: GoogleFonts.roboto(
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
+                                )),
                           ),
-                          prefixIcon: const Icon(Icons.calendar_month_rounded,
-                              color: Color.fromARGB(255, 255, 255, 255),
-                              size: 28),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal:min(AppSizes.responsiveValue(context, 16.0),20),),
+                        constraints:
+                            BoxConstraints(
+                              maxWidth: min(AppSizes.responsiveValue(context, 300.0),200),
+                              minHeight:min(AppSizes.responsiveValue(context, 20.0),40),),
+                        child: DateTimeFormField(
+                          decoration: InputDecoration(
+                            hintText: 'Choisir pour une date',
+                            hintStyle: GoogleFonts.roboto(
+                                fontSize: min(AppSizes.responsiveValue(context, 14.0),20), color: Colors.white),
+                            fillColor:const Color.fromARGB(255, 255, 136, 0),
+                            // Color.fromARGB(255, 82, 119, 175),
+                            filled: true,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide.none,
+                            ),
+                            prefixIcon: const Icon(Icons.calendar_month_rounded,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                size: 28),
+                          ),
+                          hideDefaultSuffixIcon: true,
+                          mode: DateTimeFieldPickerMode.date,
+                          initialValue: null,
+                          onChanged: (DateTime? value) {
+                            if (value != null) {
+                              setState(() {
+                                selectedDate = value;
+                              });
+                            }
+                          },
+                          style: GoogleFonts.roboto(
+                              fontSize: 12, color: Colors.white),
                         ),
-                        hideDefaultSuffixIcon: true,
-                        mode: DateTimeFieldPickerMode.date,
-                        initialValue: null,
-                        onChanged: (DateTime? value) {
-                          if (value != null) {
-                            setState(() {
-                              selectedDate = value;
-                            });
-                          }
-                        },
-                        style: GoogleFonts.roboto(
-                            fontSize: 12, color: Colors.white),
                       ),
                     ),
                   ],
@@ -297,8 +307,8 @@ class _DepensesViewState extends State<DepensesView> {
                       itemBuilder: (BuildContext context, int index) {
                         DepensesModel depense = filteredDepenses[index];
                         return Container(
-                          height: AppSizes.responsiveValue(context, 100),
-                          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15),),
+                          height:  min(AppSizes.responsiveValue(context, 100),100),
+                          padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 12),5),),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color:const Color.fromARGB(255, 250, 250, 250),
@@ -311,7 +321,7 @@ class _DepensesViewState extends State<DepensesView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                                padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 8),10),),
                                 child: Row(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.start,
@@ -319,23 +329,27 @@ class _DepensesViewState extends State<DepensesView> {
                                   children: [
                                     Padding(
                                       padding:
-                                          EdgeInsets.only(left: AppSizes.responsiveValue(context, 15),),
+                                          EdgeInsets.only(left:  min(AppSizes.responsiveValue(context, 12),15),),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            depense.motifs,
-                                            style: GoogleFonts.roboto(
-                                              fontSize: AppSizes.fontMedium,
-                                              fontWeight: FontWeight.w600,
+                                          Expanded(
+                                            child: Text(
+                                              depense.motifs,
+                                              style: GoogleFonts.roboto(
+                                                fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ),
-                                          Text(
-                                            "${depense.montants.toString()} XOF",
-                                            style: GoogleFonts.roboto(
-                                              fontSize: AppSizes.fontMedium,
-                                              color: Colors.grey[500],
+                                          Expanded(
+                                            child: Text(
+                                              "${depense.montants.toString()} XOF",
+                                              style: GoogleFonts.roboto(
+                                                fontSize:min(AppSizes.responsiveValue(context, 14.0),20),
+                                                color: Colors.grey[500],
+                                              ),
                                             ),
                                           ),
                                         ],
@@ -345,7 +359,7 @@ class _DepensesViewState extends State<DepensesView> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8),),
+                                padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 8),10),),
                                 child: Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.start,
@@ -353,7 +367,7 @@ class _DepensesViewState extends State<DepensesView> {
                                     Text(
                                       "Date",
                                       style: GoogleFonts.montserrat(
-                                          fontSize: AppSizes.fontMedium,
+                                          fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                           fontWeight: FontWeight.w600),
                                     ),
                                     Text(DateFormat("dd MMM yyyy")

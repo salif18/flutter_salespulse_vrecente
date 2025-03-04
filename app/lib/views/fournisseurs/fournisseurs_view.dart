@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +171,7 @@ class _FournisseurViewState extends State<FournisseurView> {
               title: Text(
                 "Mes fournisseurs",
                 style: GoogleFonts.roboto(
-                    fontSize: AppSizes.fontLarge, color: Colors.white),
+                    fontSize: min(AppSizes.responsiveValue(context, 16.0),24), color: Colors.white),
               ),
             ),
           ),
@@ -243,7 +244,7 @@ class _FournisseurViewState extends State<FournisseurView> {
                           ),
                         ),
                         child: Container(
-                          height: 110,
+                          height: min(AppSizes.responsiveValue(context, 114.0),120),
                           decoration: const BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
@@ -280,11 +281,11 @@ class _FournisseurViewState extends State<FournisseurView> {
                                         children: [
                                           Text(fournisseur.prenom,
                                               style: GoogleFonts.roboto(
-                                                  fontSize: AppSizes.fontMedium,
+                                                  fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                                   fontWeight: FontWeight.w500)),
                                           Text(fournisseur.numero.toString(),
                                               style: GoogleFonts.roboto(
-                                                  fontSize: AppSizes.fontSmall,
+                                                  fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                                   color: Colors.grey[500])),
                                         ],
                                       ),
@@ -330,7 +331,7 @@ class _FournisseurViewState extends State<FournisseurView> {
             child: Text(
               "Ajouter categories",
               style: GoogleFonts.roboto(
-                fontSize: AppSizes.fontLarge,
+                fontSize:min(AppSizes.responsiveValue(context, 14.0),20),
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -354,10 +355,10 @@ class _FournisseurViewState extends State<FournisseurView> {
                         decoration: InputDecoration(
                           hintText: "Prénom du fournisseur",
                           hintStyle:
-                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                          prefixIcon: const Icon(
+                              GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                          prefixIcon: Icon(
                             Icons.person,
-                            size: AppSizes.iconMedium,
+                            size: min(AppSizes.responsiveValue(context, 24.0),30),
                             color: Colors.purpleAccent,
                           ),
                         ),
@@ -374,10 +375,10 @@ class _FournisseurViewState extends State<FournisseurView> {
                         decoration: InputDecoration(
                           hintText: "Nom du fournisseur",
                           hintStyle:
-                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                          prefixIcon: const Icon(
+                              GoogleFonts.roboto(fontSize:min(AppSizes.responsiveValue(context, 14.0),20),),
+                          prefixIcon: Icon(
                             Icons.person,
-                            size: AppSizes.iconMedium,
+                            size: min(AppSizes.responsiveValue(context, 24.0),30),
                             color: Colors.purpleAccent,
                           ),
                           isDense: true, // Réduit la hauteur
@@ -398,10 +399,10 @@ class _FournisseurViewState extends State<FournisseurView> {
                         decoration: InputDecoration(
                           hintText: "Numero du fournisseur",
                           hintStyle:
-                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                          prefixIcon: const Icon(
+                              GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                          prefixIcon: Icon(
                             Icons.phone,
-                            size: AppSizes.iconMedium,
+                            size: min(AppSizes.responsiveValue(context, 24.0),30),
                             color: Colors.purpleAccent,
                           ),
                           isDense: true, // Réduit la hauteur
@@ -421,10 +422,10 @@ class _FournisseurViewState extends State<FournisseurView> {
                         decoration: InputDecoration(
                           hintText: "Nom du produit",
                           hintStyle:
-                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                          prefixIcon: const Icon(
+                              GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                          prefixIcon: Icon(
                             Icons.article_rounded,
-                            size: AppSizes.iconMedium,
+                            size: min(AppSizes.responsiveValue(context, 24.0),30),
                             color: Colors.purpleAccent,
                           ),
                           isDense: true, // Réduit la hauteur
@@ -444,10 +445,10 @@ class _FournisseurViewState extends State<FournisseurView> {
                         decoration: InputDecoration(
                           hintText: "Address du fournisseur",
                           hintStyle:
-                              GoogleFonts.roboto(fontSize: AppSizes.fontMedium),
-                          prefixIcon: const Icon(
+                              GoogleFonts.roboto(fontSize: min(AppSizes.responsiveValue(context, 14.0),20),),
+                          prefixIcon: Icon(
                             Icons.location_on,
-                            size: AppSizes.iconMedium,
+                            size: min(AppSizes.responsiveValue(context, 24.0),30),
                             color: Colors.purpleAccent,
                           ),
                           isDense: true, // Réduit la hauteur
@@ -463,12 +464,15 @@ class _FournisseurViewState extends State<FournisseurView> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(255, 255, 136, 0),
-                          minimumSize: const Size(400, 50),
+                          minimumSize: Size(
+                            min(AppSizes.responsiveValue(context, 400.0),20),
+                            min(AppSizes.responsiveValue(context, 40.0),60),
+                          ),
                         ),
                         child: Text(
                           "Enregistrer",
                           style: GoogleFonts.roboto(
-                            fontSize: AppSizes.fontSmall,
+                            fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                             fontWeight: FontWeight.w400,
                             color: Colors.white,
                           ),

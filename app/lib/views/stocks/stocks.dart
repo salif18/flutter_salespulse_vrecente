@@ -1,6 +1,7 @@
 import 'dart:async'; // Pour StreamController
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:date_field/date_field.dart';
 import 'package:dio/dio.dart';
@@ -272,15 +273,15 @@ class _StocksViewState extends State<StocksView> {
           slivers: [
             SliverAppBar(
               backgroundColor: const Color(0xff001c30),
-              expandedHeight: AppSizes.responsiveValue(context, 100.0),
+              expandedHeight: min(AppSizes.responsiveValue(context, 100.0),100),
               pinned: true,
               floating: true,
               leading: IconButton(
                   onPressed: () {
                     drawerKey.currentState!.openDrawer();
                   },
-                  icon: const Icon(Icons.sort,
-                      size: AppSizes.iconHyperLarge,
+                  icon: Icon(Icons.sort,
+                      size: min(AppSizes.responsiveValue(context, 24.0),38),
                       color: Color.fromARGB(255, 255, 115, 1))),
               actions: [
                 IconButton(
@@ -288,9 +289,9 @@ class _StocksViewState extends State<StocksView> {
                     onPressed: () {
                       _addStokcs(context);
                     },
-                    icon: const Icon(Icons.add,
+                    icon: Icon(Icons.add,
                         color: Color.fromARGB(255, 255, 136, 0),
-                        size: AppSizes.iconLarge)),
+                        size:  min(AppSizes.responsiveValue(context, 24.0),30),)),
                 IconButton(
                   tooltip: "Categories",
                   onPressed: () {
@@ -299,9 +300,9 @@ class _StocksViewState extends State<StocksView> {
                         MaterialPageRoute(
                             builder: (context) => const CategoriesView()));
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.category,
-                    size: AppSizes.iconLarge,
+                    size:  min(AppSizes.responsiveValue(context, 24.0),30),
                     color: Color.fromARGB(255, 255, 136, 0),
                   ),
                 ),
@@ -313,9 +314,9 @@ class _StocksViewState extends State<StocksView> {
                         MaterialPageRoute(
                             builder: (context) => const FournisseurView()));
                   },
-                  icon: const Icon(Icons.airport_shuttle,
+                  icon: Icon(Icons.airport_shuttle,
                       color: Color.fromARGB(255, 255, 136, 0),
-                      size: AppSizes.iconLarge),
+                      size: min(AppSizes.responsiveValue(context, 24.0),30),),
                 ),
                 IconButton(
                     tooltip: "Scanner",
@@ -325,9 +326,9 @@ class _StocksViewState extends State<StocksView> {
                           MaterialPageRoute(
                               builder: (context) => const MobileScannerView()));
                     },
-                    icon: const Icon(Icons.qr_code_scanner_sharp,
+                    icon: Icon(Icons.qr_code_scanner_sharp,
                         color: Color.fromARGB(255, 255, 136, 0),
-                        size: AppSizes.iconLarge)),
+                        size:  min(AppSizes.responsiveValue(context, 24.0),30),)),
                 Stack(
                   children: [
                     IconButton(
@@ -339,9 +340,9 @@ class _StocksViewState extends State<StocksView> {
                           ),
                         );
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         FontAwesomeIcons.cartShopping,
-                        size: AppSizes.iconLarge,
+                        size:  min(AppSizes.responsiveValue(context, 24.0),30),
                         color: Color.fromARGB(255, 255, 136, 0),
                       ),
                     ),
@@ -351,17 +352,19 @@ class _StocksViewState extends State<StocksView> {
                             future: provider.loadCartFromLocalStorage(),
                             builder: (context, snaptshot) {
                               if (provider.myCart.isNotEmpty) {
-                                return Positioned(
-                                  left: AppSizes.responsiveValue(context, 25.0),
-                                  bottom: AppSizes.responsiveValue(context, 25.0),
-                                  child: Badge.count(
-                                    count: provider.totalArticle,
-                                    backgroundColor: Colors.amber,
-                                    largeSize: AppSizes.responsiveValue(context, 40.0) / 2,
-                                    textStyle: GoogleFonts.roboto(
-                                      fontSize: AppSizes.responsiveValue(context, 13.0),
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                return Expanded(
+                                  child: Positioned(
+                                    left: AppSizes.responsiveValue(context, 25.0),
+                                    bottom: AppSizes.responsiveValue(context, 25.0),
+                                    child: Badge.count(
+                                      count: provider.totalArticle,
+                                      backgroundColor: Colors.amber,
+                                      largeSize: AppSizes.responsiveValue(context, 40.0) / 2,
+                                      textStyle: GoogleFonts.roboto(
+                                        fontSize: AppSizes.responsiveValue(context, 13.0),
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 );
@@ -376,31 +379,30 @@ class _StocksViewState extends State<StocksView> {
                 SizedBox(width: AppSizes.responsiveValue(context, 20.0),)
               ],
               flexibleSpace: FlexibleSpaceBar(
-                title: AutoSizeText("Stocks",
-                    minFontSize:16.0,
+                title:Text("Stocks",
                     style: GoogleFonts.roboto(
-                        fontSize: AppSizes.fontLarge, color: Colors.white)),
+                        fontSize:  min(AppSizes.responsiveValue(context, 16.0),24), color: Colors.white)),
               ),
             ),
             SliverToBoxAdapter(
               child: Container(
                 color: const Color(0xff001c30),
-                height: AppSizes.responsiveValue(context, 150.0),
+                height:  min(AppSizes.responsiveValue(context, 100.0),150),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
                       padding:  EdgeInsets.symmetric(horizontal: AppSizes.responsiveValue(context, 16.0),),
                       constraints:  BoxConstraints(
-                        maxWidth: AppSizes.responsiveValue(context, 290.0),
-                        minHeight: AppSizes.responsiveValue(context, 15.0),
+                        maxWidth:  min(AppSizes.responsiveValue(context, 250.0),480),
+                        minHeight:  min(AppSizes.responsiveValue(context, 15.0),20),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(AppSizes.responsiveValue(context, 8.0)),
                         child: DropdownButtonFormField<String>(
                           isDense: false,
                           dropdownColor: const Color(0xff001c30),
-                          menuMaxHeight: AppSizes.responsiveValue(context, 200.0),
+                          // menuMaxHeight:  min(AppSizes.responsiveValue(context, 50.0),80),
                           borderRadius: BorderRadius.circular(10),
                           value: _categorieValue,
                           decoration: InputDecoration(
@@ -410,7 +412,7 @@ class _StocksViewState extends State<StocksView> {
                             hintText: "Choisir une categorie",
                             hintStyle: TextStyle(
                                 fontFamily: "roboto",
-                                fontSize: AppSizes.responsiveValue(context, 12.0),
+                                fontSize: min(AppSizes.responsiveValue(context, 14.0),24),
                                 color: Colors.white),
                             border: const OutlineInputBorder(
                                 borderSide: BorderSide.none,
@@ -423,7 +425,7 @@ class _StocksViewState extends State<StocksView> {
                               child: Text(
                                 categorie.name,
                                 style: GoogleFonts.roboto(
-                                    fontSize: AppSizes.responsiveValue(context, 12.0),color: Colors.white),
+                                    fontSize:  min(AppSizes.responsiveValue(context, 14.0),28),color: Colors.white),
                               ),
                             );
                           }).toList(),
@@ -456,9 +458,9 @@ class _StocksViewState extends State<StocksView> {
                               MaterialPageRoute(
                                   builder: (context) => const SearchPage()));
                         },
-                        icon: const Icon(Icons.search,
+                        icon: Icon(Icons.search,
                             color: Color.fromARGB(255, 207, 232, 252),
-                            size: AppSizes.iconHyperLarge)),
+                            size:  min(AppSizes.responsiveValue(context, 24.0),38),)),
                   ],
                 ),
               ),
@@ -529,13 +531,13 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height:  min(AppSizes.responsiveValue(context, 50.0),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Photo",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -546,16 +548,16 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height:  min(AppSizes.responsiveValue(context, 50),100),
                                   color: Colors.orange,
                                   constraints: BoxConstraints(
                                     maxWidth: MediaQuery.of(context).size.width,
                                   ),
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Name",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -566,13 +568,16 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height:  min(AppSizes.responsiveValue(context, 50),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  constraints: BoxConstraints(
+                                    maxWidth: MediaQuery.of(context).size.width,
+                                  ),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Categories",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -583,13 +588,13 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height: min(AppSizes.responsiveValue(context, 50.0),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Prix d'achat",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -600,13 +605,13 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height:AppSizes.responsiveValue(context, 50.0),
+                                  height: min(AppSizes.responsiveValue(context, 50.0),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Prix de vente",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -617,13 +622,13 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height: min(AppSizes.responsiveValue(context, 50.0),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Quantités",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -634,13 +639,13 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height:  min(AppSizes.responsiveValue(context, 50.0),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Date",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -651,13 +656,13 @@ class _StocksViewState extends State<StocksView> {
                             DataColumn(
                               label: Expanded(
                                 child: Container(
-                                  height: AppSizes.responsiveValue(context, 50.0),
+                                  height:  min(AppSizes.responsiveValue(context, 50.0),100),
                                   color: Colors.orange,
-                                  padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                  padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                   child: Text(
                                     "Actions",
                                     style: GoogleFonts.roboto(
-                                      fontSize: AppSizes.fontMedium,
+                                      fontSize:  min(AppSizes.responsiveValue(context, 14.0),20),
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -671,90 +676,90 @@ class _StocksViewState extends State<StocksView> {
                               cells: [
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5.0),),
+                                    padding: EdgeInsets.all( min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: article.image.isEmpty
                                         ? Image.asset(
                                             "assets/images/defaultImg.png",
-                                            width: AppSizes.responsiveValue(context, 50.0),
-                                            height: AppSizes.responsiveValue(context, 50.0),
+                                            width:  min(AppSizes.responsiveValue(context, 50.0),150),
+                                            height: min(AppSizes.responsiveValue(context, 50.0),150),
                                           )
                                         : Image.network(
                                             article.image,
-                                            width: AppSizes.responsiveValue(context, 50.0),
-                                            height: AppSizes.responsiveValue(context, 50.0),
+                                           width:  min(AppSizes.responsiveValue(context, 50.0),150),
+                                            height: min(AppSizes.responsiveValue(context, 50.0),150),
                                           ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding: EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       article.nom,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       article.categories,
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       "${article.prixAchat} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       "${article.prixVente} XOF",
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 12.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       article.stocks.toString(),
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Text(
                                       DateFormat("dd MMM yyyy")
                                           .format(article.dateAchat),
                                       style: GoogleFonts.roboto(
-                                        fontSize: AppSizes.fontSmall,
+                                        fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                                       ),
                                     ),
                                   ),
                                 ),
                                 DataCell(
                                   Container(
-                                    padding:  EdgeInsets.all(AppSizes.responsiveValue(context, 5),),
+                                    padding:  EdgeInsets.all(min(AppSizes.responsiveValue(context, 5.0),5),),
                                     child: Row(
                                       children: [
                                         if (article.stocks > 0)
@@ -770,7 +775,7 @@ class _StocksViewState extends State<StocksView> {
                                                 content: Text(
                                                   "Article ajouté",
                                                   style: GoogleFonts.roboto(
-                                                      fontSize: 16),
+                                                      fontSize: min(AppSizes.responsiveValue(context, 16.0),20),),
                                                 ),
                                                 duration:
                                                     const Duration(seconds: 1),
@@ -836,7 +841,7 @@ class _StocksViewState extends State<StocksView> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15),),
+          padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 15.0),25),),
           height: MediaQuery.of(context).size.height * 0.95,
           child: Form(
             key: _globalKey,
@@ -845,7 +850,7 @@ class _StocksViewState extends State<StocksView> {
                 children: [
                   Text("Ajouter vos stocks",
                       style: GoogleFonts.roboto(
-                          fontSize: AppSizes.fontMedium,
+                          fontSize:min(AppSizes.responsiveValue(context, 14.0),20),
                           fontWeight: FontWeight.w500)),
                   SizedBox(height: AppSizes.responsiveValue(context, 20),),
                   Row(
@@ -855,7 +860,7 @@ class _StocksViewState extends State<StocksView> {
                         children: [
                           Text("Image du produit",
                               style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium)),
+                                  fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
                           IconButton(
                             icon: const Icon(Icons.photo_camera_back_outlined,
                                 size: 38),
@@ -1004,14 +1009,14 @@ class _StocksViewState extends State<StocksView> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 255, 136, 0),
-                        minimumSize: Size( AppSizes.responsiveValue(context, 400),  AppSizes.responsiveValue(context, 40))),
+                        minimumSize: Size( min(AppSizes.responsiveValue(context, 400.0),800), min(AppSizes.responsiveValue(context, 40.0),60),)),
                     onPressed: () {
                       _sendNewStocksToServer();
                       Navigator.pop(context);
                     },
                     child: Text("Ajouter",
                         style: GoogleFonts.roboto(
-                            fontSize: AppSizes.fontMedium,
+                            fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                             color: Colors.white)),
                   ),
                 ],
@@ -1034,7 +1039,7 @@ class _StocksViewState extends State<StocksView> {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(AppSizes.responsiveValue(context, 15)),
+          padding: EdgeInsets.all(min(AppSizes.responsiveValue(context, 15.0),20),),
           height: MediaQuery.of(context).size.height * 0.95,
           child: Form(
             key: _globalKey,
@@ -1043,7 +1048,7 @@ class _StocksViewState extends State<StocksView> {
                 children: [
                   Text("Modifier vos stocks",
                       style: GoogleFonts.roboto(
-                          fontSize: AppSizes.fontMedium,
+                          fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                           fontWeight: FontWeight.w500)),
                   SizedBox(height: AppSizes.responsiveValue(context, 20)),
                   Row(
@@ -1053,7 +1058,7 @@ class _StocksViewState extends State<StocksView> {
                         children: [
                           Text("Image du produit",
                               style: GoogleFonts.roboto(
-                                  fontSize: AppSizes.fontMedium)),
+                                  fontSize: min(AppSizes.responsiveValue(context, 14.0),20),)),
                           IconButton(
                             icon: const Icon(Icons.photo_camera_back_outlined,
                                 size: 38),
@@ -1065,7 +1070,7 @@ class _StocksViewState extends State<StocksView> {
                       ),
                       if (_articleImage != null)
                         Image.file(File(_articleImage!.path),
-                            width: AppSizes.responsiveValue(context, 100), height: AppSizes.responsiveValue(context, 100)),
+                            width: min(AppSizes.responsiveValue(context, 100.0),200), height: min(AppSizes.responsiveValue(context, 10.0),200),),
                     ],
                   ),
                   SizedBox(height: AppSizes.responsiveValue(context, 20)),
@@ -1138,13 +1143,15 @@ class _StocksViewState extends State<StocksView> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 240, 27, 27),
-                        minimumSize: Size( AppSizes.responsiveValue(context, 400),  AppSizes.responsiveValue(context, 40))),
+                        minimumSize: Size( 
+                          min(AppSizes.responsiveValue(context, 400.0),800), 
+                        min(AppSizes.responsiveValue(context, 40.0),60),)),
                     onPressed: () {
                       _removeArticles(article);
                     },
                     child: Text("Supprimer",
                         style: GoogleFonts.roboto(
-                            fontSize: AppSizes.fontMedium,
+                            fontSize: min(AppSizes.responsiveValue(context, 14.0),20),
                             color: Colors.white)),
                   ),
                 ],
